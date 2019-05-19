@@ -19,6 +19,55 @@ const videoSchema = new Schema({
     },
     description:{
         type:String,
+    
+    },
+    VideoUrl:{
+        type:String,
+        required:true
+    },
+    starNumber:{
+        type:Number,
+        default:0
+    },
+    visitTimes:{
+        type:Number,
+        default:0
+    },
+    popularity:{
+        type:Number,
+        default:0
+    },
+    poster:{
+        type:String,
+        default:"/images/defaultposter.jpeg"
+
+    },
+    created_time: {
+        type: Date,
+        
+        default: Date.now
+      },
+    user:{
+        username:{
+            type:String,
+            required:true
+        },
+        userId:{
+            type:Schema.Types.ObjectId,
+            required:true,
+            ref:'User'
+        }
+    }
+
+});
+
+const rankedVideoSchema = new Schema({
+    title:{
+        type:String,
+        rquired:true
+    },
+    description:{
+        type:String,
         required:true
     },
     VideoUrl:{
@@ -29,6 +78,11 @@ const videoSchema = new Schema({
         type:Number,
         default:0
     },
+    created_time: {
+        type: Date,
+        
+        default: Date.now
+      },
     visitTimes:{
         type:Number,
         default:0

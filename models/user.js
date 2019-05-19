@@ -36,6 +36,7 @@ var userSchema = new Schema({
     type: String,
     default: '/public/img/avatar-default.png'
   },
+  resetToken:String,
   university:{
     type: String,
     default:''
@@ -47,6 +48,9 @@ var userSchema = new Schema({
   },
   birthday: {
     type: Date
+  },
+  type:{
+    type:String
   },
   status: {
     type: Number,
@@ -60,7 +64,29 @@ var userSchema = new Schema({
   description:{
     type:String,
   },
+  location:{
+    type:String,
+  },
+  phoneNumber:{
+    type:String,
+  },
+  resume:{
+    type:String,
+    default:''
+  },
   cart: {
+    items: [
+      {
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Video',
+          required: true
+        },
+        quantity: { type: Number, required: true }
+      }
+    ]
+  },
+  likecart: {
     items: [
       {
         productId: {
@@ -100,6 +126,35 @@ userSchema.methods.addToCart = function(product) {
       return item.productId.toString() !== productId.toString();
     });
     this.cart.items = updatedCartItems;
+    return this.save();
+  };
+  userSchema.methods.addToLikeCart = function(product) {
+    const cartProductIndex = this.likecart.items.findIndex(cp => {
+      return cp.productId.toString() === product._id.toString();
+    });
+    let newQuantity = 1;
+    const updatedCartItems = [...this.likecart.items];
+  
+    if (cartProductIndex >= 0) {
+      newQuantity = this.likecart.items[cartProductIndex].quantity + 1;
+      updatedCartItems[cartProductIndex].quantity = newQuantity;
+    } else {
+      updatedCartItems.push({
+        productId: product._id,
+        quantity: newQuantity
+      });
+    }
+    const updatedCart = {
+      items: updatedCartItems
+    };
+    this.likecart = updatedCart;
+    return this.save();
+  };
+  userSchema.methods.removeFromlikeCart = function(productId) {
+    const updatedlikeCartItems = this.likecart.items.filter(item => {
+      return item.productId.toString() !== productId.toString();
+    });
+    this.likecart.items = updatedlikeCartItems;
     return this.save();
   };
 // userSchema.methods.addToCollection = function(video) {

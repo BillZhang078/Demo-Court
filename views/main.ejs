@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Index</title>
+  <title> Demo Court</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,6 +17,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
 <style>
 ul.demo {
   list-style-type: none;
@@ -40,15 +43,16 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  width: 80%;
+  width: 100%;
+  margin:auto
 }
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto ;
-  grid-gap: 10px;
+  grid-gap: 20px;
   background-color: bg-light;
-  padding: 10px;
-  width: 95%;
+  padding: 20px;
+  width: 75%;
   margin: auto;
 }
 
@@ -94,44 +98,76 @@ body, html {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
-    <!-- Brand/logo -->
-    <a class="navbar-brand " href="main.html">
-      <img src="/images/logo3.png" alt="logo" style="width: 60px;">
+<!-- <nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
+   
+    <a class="navbar-brand " href="/">
+      <img src="/images/logo3.png" alt="logo" style="width: 70px; border: 1px solid red;">
     </a>
-    <!-- Links -->
+    
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link text-dark" href="index.html"><h5>Categories |</h5></a></li>
         <%if(LoggedIn){%>
         <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign out |</h5></a></li>
         <li class="nav-item"><a class="nav-link text-dark" href="/personal"><h5>Personal Page</h5></a></li>
         <%}else{%>
-        <li class="nav-item"><a class="nav-link text-dark" href="/login"><h5>Sign in |</h5></a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="/login"><h5>Sign in </h5></a></li>
         <%}%>
-        <li class="nav-item"><a class="nav-link text-dark" href="signup.html"><h5>| About</h5></a></li>
+       
 
-        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;" method = "GET" action = "/searchResults"> 
+          <input class="form-control mr-sm-2" name = "search" type="text" placeholder="Search">
           <button class="btn btn-success float-right" type="submit"  >Search</button> 
           <%if(LoggedIn){%>
-          <a class="nav-link text-dark" href="#"><img src="/images/nofi.png" alt="logo" style="width:20px;" ></a>
-          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href="uploadpage.html"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg"class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
           <%}%>
         </form>
     </ul>
+  </nav> -->
+  <nav class="navbar navbar-expand-sm bg-light navbar-dark row" >
+      <!-- Brand/logo -->
+      <!-- Links -->
+      <div class="col-md-3">
+        <ul class="navbar-nav" >
+           
+        	 <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <!-- <a  href="/"><h1 color = "blue">Demo Court</h1></a> -->
+          
+          <%if(LoggedIn){%>
+        <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign out |</h5></a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="/personal"><h5>Personal Page</h5></a></li>
+        <%}else{%>
+        <li class="nav-item"><a class="nav-link text-dark" href="/login"><h5>Sign in </h5></a></li>
+        <%}%>
+        </ul>
+        
+      </div>
+      <div class="col-md-7" >
+        
+        <form class="example"  style="margin:auto;max-width:400px" method = "GET" action = "/searchResults">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <div class="col-md-2" >
+        <ul class="navbar-nav" >
+         <%if(LoggedIn){%>
+          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+          <%}%>
+        </ul>
+    </div>
   </nav>
 
   <div class="container ">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+   
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
+   
     <div class="carousel-inner">
 
       <div class="item active">
@@ -157,13 +193,13 @@ body, html {
         <img src="/images/slide9.png"  alt="New York" style="width:100%;">
         <div class="carousel-caption">
           <h1>DemoCourt</h1>
-          <h3>It's for yall, computer vision, robostic and deep learning</h3>
+          <h3>It's for you all, computer vision, robostic and deep learning</h3>
         </div>
       </div>
   
     </div>
 
-    <!-- Left and right controls -->
+    
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
       <span class="sr-only">Previous</span>
@@ -174,59 +210,307 @@ body, html {
     </a>
   </div>
   </div>
-
+<%if(isRanked == true){%>
 <div class="p-5 container-fluid bg-light">
-  <h4 style="margin-left: 5%">Recented video</h4>
+  <h2 style="margin-left: 15%">Popular videos</h2>
   
-  <div class=" grid-container "  >
-  <%if (videos.length>0) {%>
-        <%videos.forEach(p=> {%>
-      <div style="border: 0.5 px solid grey"><video  width="220" height="145"  controls>
-      <source src=<%=p.VideoUrl%> type="video/mp4"></video>
-                <a href="#" style="text-decoration: none; color: black;"><p><%=p.user.username%></p></a>
-                <a href="#" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
-                <p style="color: grey"><%=p.visitTimes%> views | 3 days ago</p>
+  <div class=" grid-container ">
+  <%if (rankedVideoLength>0) {%>
+        <%rankedVideo.forEach(p=> {%>
+      
+      <div ><a href = "/getSingleVideo/<%= p._id%>">
+       <div class="player">
+     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=5 " width = "200",height = "150" > </video>
+     <div class="player__controls">
+       <div class="progress">
+        <div class="progress__filled"></div>
+       </div>
+       <button class="player__button toggle" title="Toggle Play">►</button>
+       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1" title="monkey">
+       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1" title="monkey">
+       <button data-skip="-10" class="player__button">« 10s</button>
+       <button data-skip="25" class="player__button">25s »</button>
+       <button class="player__fullscreen" title="Toggle fullscreen">↔️</button>
+     </div>
+   </div>
+      </a>
+      <a href = "/getPage/<%=p.user.userId%>" style="text-decoration: none; color: black;"><p><%=p.user.username%></p></a>
+      <a href="#" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+      <p style="color: grey"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
       </div>
+      </form>
          <%})%>
 <%}%>
     </div>
-  
+    </div>
+    </div>
+
   <div class=" p-5 nav-item col-md-12 text-center " > 
-    <a href="galleries.html" class="btn btn-default btn-md" role="button">View More Here</a>
-    
+    <%if(isPaginationP == false){%>
+    <a href="/Rankedvideos/1" class="btn btn-default btn-md" role="button">View More Here</a>
+    <%}%>
+    <%if(isPaginationP == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/Rankedvideos/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/Rankedvideos/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/Rankedvideos/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+
   </div>
+  <%}%>
+   <!-- This is Deep Learning Video -->
+  <%if(isDeep == true){%>
+   <div class="p-5 container-fluid bg-light">
+  <h2 style="margin-left: 15%"> Deep Learning</h2>
+  
+  <div class=" grid-container ">
+  <%if (deepLearningLength>0) {%>
+        <%deepLearning.forEach(p=> {%>
+      
+      <div ><a href = "/getSingleVideo/<%= p._id%>">
+       <div class="player">
+     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=5 " > </video>
+     <div class="player__controls">
+       <div class="progress">
+        <div class="progress__filled"></div>
+       </div>
+       <button class="player__button toggle" title="Toggle Play">►</button>
+       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1" title="monkey">
+       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1" title="monkey">
+       <button data-skip="-10" class="player__button">« 10s</button>
+       <button data-skip="25" class="player__button">25s »</button>
+       <button class="player__fullscreen" title="Toggle fullscreen">↔️</button>
+     </div>
+   </div>
+      </a>
+      <a href = "/getPage/<%=p.user.userId%>" style="text-decoration: none; color: black;"><p><%=p.user.username%></p></a>
+      <a href="#" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+      <p style="color: grey"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
+      </div>
+      </form>
+         <%})%>
+<%}%>
+    </div>
+    </div>
+    </div>
+
+  <div class=" p-5 nav-item col-md-12 text-center " > 
+    <%if(isPaginationD== false){%>
+    <a href="/getDeepLearning/1" class="btn btn-default btn-md" role="button">View More Here</a>
+    <%}%>
+    <%if(isPaginationD == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getDeepLearning/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getDeepLearning/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getDeepLearning/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+ <%}%>
+            <!-- Conputer Vision -->
+           
+  <%if(isVision == true){%>
+   <div class="p-5 container-fluid bg-light">
+  <h2 style="margin-left: 15%"> Computer Vision </h2>
+  
+  <div class=" grid-container ">
+  <%if (computerVisionLength>0) {%>
+        <%computerVision.forEach(p=> {%>
+      
+      <div ><a href = "/getSingleVideo/<%= p._id%>">
+       <div class="player">
+     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=5 " > </video>
+     <div class="player__controls">
+       <div class="progress">
+        <div class="progress__filled"></div>
+       </div>
+       <button class="player__button toggle" title="Toggle Play">►</button>
+       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1" title="monkey">
+       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1" title="monkey">
+       <button data-skip="-10" class="player__button">« 10s</button>
+       <button data-skip="25" class="player__button">25s »</button>
+       <button class="player__fullscreen" title="Toggle fullscreen">↔️</button>
+     </div>
+   </div>
+      </a>
+      <a href = "/getPage/<%=p.user.userId%>" style="text-decoration: none; color: black;"><p><%=p.user.username%></p></a>
+      <a href="#" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+      <p style="color: grey"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
+      </div>
+      </form>
+         <%})%>
+<%}%>
+    </div>
+    </div>
+    </div>
+
+  <div class=" p-5 nav-item col-md-12 text-center " > 
+    <%if(isPaginationV == false){%>
+    <a href="/getComputerVision/1" class="btn btn-default btn-md" role="button">View More Here</a>
+    <%}%>
+    <%if(isPaginationV== true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getComputerVision/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getComputerVision/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getComputerVision/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+
+
+  </div>
+<% } %>
+   <!-- This is Robotic Video -->
+  
+   <%if(isRobotic == true) {%>
+   <div class="p-5 container-fluid bg-light">
+  <h2 style="margin-left: 15%"> Robotic</h2>
+  
+  <div class=" grid-container ">
+  <%if (roboticLength>0) {%>
+        <%robotic.forEach(p=> {%>
+      
+      <div ><a href = "/getSingleVideo/<%= p._id%>">
+       <div class="player">
+     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=10 " > </video>
+     <div class="player__controls">
+       <div class="progress">
+        <div class="progress__filled"></div>
+       </div>
+       <button class="player__button toggle" title="Toggle Play">►</button>
+       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1" title="monkey">
+       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1" title="monkey">
+       <button data-skip="-10" class="player__button">« 10s</button>
+       <button data-skip="25" class="player__button">25s »</button>
+       <button class="player__fullscreen" title="Toggle fullscreen">↔️</button>
+     </div>
+   </div>
+      </a>
+      <a href = "/getPage/<%=p.user.userId%>" style="text-decoration: none; color: black;"><p><%=p.user.username%></p></a>
+      <a href="#" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+      <p style="color: grey"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
+      </div>
+      </form>
+         <%})%>
+<%}%>
+    </div>
+    </div>
+    </div>
+
+  <div class=" p-5 nav-item col-md-12 text-center " > 
+    <%if(isPaginationR == false){%>
+    <a href="/getRobotic/1" class="btn btn-default btn-md" role="button">View More Here</a>
+    <%}%>
+    <%if(isPaginationR == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getRobotic/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getRobotic/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getRobotic/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+<%}%>
   <div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
 
-  
-<script>
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover({html:true});   
-});
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "ajax_info.txt", true);
-  xhttp.send();
-}
 
-window.onscroll = function() {myFunction()};
-
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
-</script>
 
 </body>
 </html>

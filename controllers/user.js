@@ -1,10 +1,14 @@
 const User = require('../models/user');
+const crypto = require('crypto'); 
 const bcryptjs = require('bcryptjs');
 const nodemailer = require('nodemailer');
+const moment = require('moment');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-const express = require('express')
-const session = require('express-session')
-
+const express = require('express');
+const Video = require('../models/videos');
+const session = require('express-session');
+const {check} = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
         api_key:'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'
@@ -16,12 +20,13 @@ const router = express.Router()
 //router.get('/', userController.postLogin);
 
 exports.getLoginPage = (req, res)=> {
-  res.render('login',{
+  res.render('signin',{
       errorMessage:req.flash('error')
   });
 }
 
 exports.singIn = (req, res, next) => {
+    console.log(req.body.email);
     const email = req.body.email;
     const password = req.body.password;
     User.findOne({ email: email })
@@ -69,6 +74,7 @@ exports.singUp = (req,res,next)=>{
             description:'',
             university:'',
             major:'',
+            location:'',
             videoCollection:{ videos:[{quantity:0}] }
         });
         return user.save();
@@ -102,30 +108,355 @@ exports.signOut = (req, res,next)=>{
  
 }
 exports.getEditPage = (req,res,next)=>{
-    res.render('editProfile');
+  
+    if(!req.session.isLoggedIn){
+      return res.redirect('/login');
+    }
+    res.render('editProfile',{
+        discription: req.user.description,
+        education:req.user.university,
+        phoneNumber:req.user.phoneNumber,
+        location:req.user.location,
+        avatar:req.user.avatar,
+        createTime:moment(req.user.created_time).format('LL')
+    });
 }
-exports.postEditProfile = (req, res, next) => {
+exports.EditAvatar = (req, res, next) => {
+
+    console.log(req.file);
     const prodId = req.user._id;
-    const updatedBio = req.body.Bio;
-    const updatedUniversity = req.body.university;
-    //const updatedImage = req.file;
-    //console.log(updatedImage);
-    //const updatedImageUrl = updatedImage.path;
+    const updatedImage = req.file;
+    const updatedImageUrl = updatedImage.path;
     User.findById(prodId)
       .then(user => {
-        user.description = updatedBio;
-        user.university = updatedUniversity;
-        user.major = '';
-        //user.avatar = updatedImageUrl;
+        user.avatar = updatedImageUrl;
         return user.save();
       })
       .then(result => {
         console.log('UPDATED Profile!');
-        res.redirect('personal');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+  exports.EditResume = (req, res, next) => {
+    console.log(req.file);
+    const prodId = req.user._id;
+    const updatedPdf = req.file;
+    const updatedResume = updatedPdf.path;
+    User.findById(prodId)
+      .then(user => {
+        user.resume = updatedResume;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+  exports.EditDiscription = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedBio = req.body.updatedBio;
+    User.findById(prodId)
+      .then(user => {
+        user.description = updatedBio;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditPhoneNumber = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedPhone = req.body.updatedPhone;
+    User.findById(prodId)
+      .then(user => {
+        user.phoneNumber = updatedPhone;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditUniversity = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedUniversity = req.body.updatedUniversity;
+    User.findById(prodId)
+      .then(user => {
+        user.university = updatedUniversity;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+  exports.EditUserName = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedUserName = req.body.newUserName;
+    User.findById(prodId)
+      .then(user => {
+        user.username = updatedUserName;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+  exports.EditLocation = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedLocation = req.body.updatedLocation;
+    User.findById(prodId)
+      .then(user => {
+        user.location= updatedLocation;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditEmail = (req, res, next) => {
+    const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.status(422).render('editAccount', {
+      errorMessage: errors.array()[0].msg
+    });
+  }
+   let prodId = req.user._id;
+   console.log(req.user._id);
+    const updatedEmail= req.body.newEmail;
+    const password = req.body.password;
+    bcryptjs
+          .compare(password, req.user.password)
+          .then(doMatch => {
+            if (doMatch) {
+              console.log(req.user._id);
+              User.findById(req.user._id)
+              .then(user => {
+                user.email= updatedEmail;
+                return user.save();
+              })
+              .then(result => {
+                console.log('UPDATED Profile!');
+                res.redirect('/editProfile');
+              })
+              .catch(err => console.log(err));
+            }
+            req.flash('error','Invalid password');
+            res.redirect('/editAccount');
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    User.findById(prodId)
+      .then(user => {
+        user.email= updatedEmail;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
       })
       .catch(err => console.log(err));
   };
 
 
+exports.getAuthorPgae = (req,res,next)=>{
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
+  const userId = req.params.userId;
+  User.findById(userId)
+  .then(user=>{
+    user
+    .populate("cart.items.productId")
+    .execPopulate()
+    .then(user => {
+      const products = user.cart.items;
+      res.render("personalPage", {
+        username: req.user.username,
+        products: products,
+        number: products.length,
+        image: req.user.avatar,
+        description: user.description,
+        email:user.email,
+        isAuthor :false,
+        resume:user.resume,
+        moment:moment
+      });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+  // });
+}
 
+exports.getAccountPage = (req,res,next)=>{
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
+  let message = req.flash('error');
+  if(message.length>0){
+    message = message[0];
+  }
+  else{
+    message = null;
+  }
+  return res.render("editaccount.ejs",{
+    errorMessage:message,
+    email:req.user.email,
+    createTime:moment(req.user.created_time).format('LL')
+  });
+}
 
+exports.getResetPage = (req,res,next)=>{
+  const token = req.params.token;
+  User.findOne({ resetToken: token})
+    .then(user => {
+      console.log(user);
+      let message = req.flash('error');
+      if (message.length > 0) {
+        message = message[0];
+      } else {
+        message = null;
+      }
+      res.render('resetPassword.ejs', {
+        errorMessage: message,
+        userId: user._id.toString(),
+        passwordToken: token
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+exports.postNewPassword = (req, res, next) => {
+  let newPassword = req.body.newPassword;
+  const userId = req.body.userId;
+  const errors = validationResult(req);
+  const passwordToken = req.body.passwordToken;
+    let resetUser;
+  // if (!errors.isEmpty()) {
+  //   console.log(errors.array());
+  //   return res.status(422).render('resetPassword', {
+  //     errorMessage: errors.array()[0].msg
+  //   });
+  // }
+  let message = req.flash('error');
+  if(message.length>0){
+    message = message[0];
+  }
+  else{
+    message = null;
+  } 
+    User.findOne({
+      resetToken: passwordToken,
+      _id: userId
+    })
+      .then(user => {
+        console.log(user);
+        resetUser = user;
+        return bcryptjs.hash(newPassword, 12);
+      })
+      .then(hashedPassword => {
+        resetUser.password = hashedPassword;
+        resetUser.resetToken = undefined;
+        resetUser.resetTokenExpiration = undefined;
+        return resetUser.save();
+      })
+      .then(result => {
+        console.log("Have Updated Password");
+        res.redirect('/login');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+ 
+  
+  //const passwordToken = req.body.passwordToken;
+//   req.user.updateOne({
+//   })
+//     .then(user => {
+//       resetUser = user;
+//       return bcryptjs.hash(newPassword, 12);
+//     })
+//     .then(hashedPassword => {
+//       resetUser.password = hashedPassword;
+//       return resetUser.save();
+//     })
+//     .then(result => {
+//       res.redirect('/login');
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// };
+
+// exports.getReset = (req, res, next) => {
+//   let message = req.flash('error');
+//   if (message.length > 0) {
+//     message = message[0];
+//   } else {
+//     message = null;
+//   }
+//   res.render('auth/reset', {
+//     path: '/reset',
+//     pageTitle: 'Reset Password',
+//     errorMessage: message
+//   });
+};
+
+exports.postReset = (req, res, next) => {
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.log(err);
+      return res.redirect('/reset');
+    }
+    const token = buffer.toString('hex');
+    User.updateOne({ email: req.body.email })
+      .then(user => {
+        if (!user) {
+          req.flash('error', 'No account with that email found.');
+          return res.redirect('/reset');
+        }
+        user.resetToken = token;
+        user.resetTokenExpiration = Date.now() + 3600000;
+        return user.save();
+      })
+      .then(result => {
+        res.redirect('/');
+        transporter.sendMail({
+          to: req.body.email,
+          from: 'DemoCourt@node-complete.com',
+          subject: 'Password reset',
+          html: `
+            <p>You requested a password reset</p>
+            <p>Click this <a href="http://localhost:3000/resetPage/${token}">link</a> to set a new password.</p>
+          `
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+};

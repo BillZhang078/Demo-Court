@@ -4,6 +4,13 @@
   <title> Personal page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//vjs.zencdn.net/7.3.0/video-js.min.css" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,29 +24,103 @@
   <link rel="stylesheet" type="text/css" href ="/css/personalpage.css">
   <style type="text/css">
   .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/banner.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/banner.jpg");
   height: 50%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
+ #load-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#pdf-main-container {
+	width: 400px;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+}
+
+#pdf-loading-bar {
+	width: 150px;
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	height: 30px;
+}
+
+#pdf-loading-completed {
+	display: inline-block;
+	background-color: #2980b9;
+	height: 100%;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+  width:450px;
+  height:600px;
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+
+
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
     <!-- Brand/logo -->
-    <a class="navbar-brand " href="/">
-      <img src="/images/logo3.png" alt="logo" style="width: 60px;">
-    </a>
+  
+       <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
     <!-- Links -->
+    
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link text-dark" href="index.html"><h5>Manage videos |</h5></a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href="galleries.html"><h5>Watch |</h5></a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href="signup.html"><h5>About</h5></a></li>
+        <%if(isAuthor == true){%>
+        <li class="nav-item"><a class="nav-link text-dark" href='/editProfile'><h5>Setting |</h5></a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href='/likePage'><h5>Likes |</h5></a></li>
+        <%}%>
+        <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign Out |</h5></a></li>
         <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-          <a class="nav-link text-dark" href="#"><img src="/images/nofi.png" alt="logo" style="width:20px;" ></a>
-          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/personal' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
           <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
         </form>
     </ul>
@@ -47,36 +128,59 @@
   <div class=" mh-100 p-5 container-fluid bg-light hero-image">
     <img src="/images/visitor2.jpeg"  class=" center rounded-circle" style="position: absolute; top: 50%; left: 40%;" alt="Cinque Terre" width="200" height="200" >
   </div>
-  <div class="p-5"></div>
   <div class=" text-center">
-    <h4><%=username%></h4>
+    <h2><%=username%></h2>
     <p class="text-secondary"><%=number%> Videos| 120 Likes</p>
+
     <p><%=description%>.</p>
+    <%if(isAuthor == false){%>
+    <p class="text-secondary" >Email: <%=email%></p>
+  
+    <%}%>
+		<%if(resume!==''){%>
+    <button id="load-button">My Resume</button>
+		<%}%>
+<embed id = "resume" src= '/<%=resume%>' type="application/pdf" width="50%" height="900px" hidden />
+<div id="pdf-main-container">
+	<div id="pdf-loader">
+		<div id="pdf-loading-bar"><div id="pdf-loading-completed"></div></div>
+	</div>
+	<div id="pdf-contents">
+		<div id="pdf-meta">
+			<div id="pdf-buttons">
+				<button id="pdf-prev">Previous</button>
+				<button id="pdf-next">Next</button>
+			</div>
+			<div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+		</div>
+		<canvas id="pdf-canvas" width="400"></canvas>
+		<div id="page-loader">Loading page ...</div>
+	</div>
+</div>
   </div>
 
   <div class=" grid-container " >
         <%if (products.length>0) {%>
         <%products.forEach(p=> {%>
-      <div style="border: 0.5 px grey">
-      <video align = "center" width="320" height="245"controls>
-  <source src=<%=p.productId.VideoUrl%> type="video/mp4">
-  
-    I'm sorry; your browser doesn't support HTML5 video in WebM with VP8/VP9 or MP4 with H.264.
-</video>
-                <a href="#" style="text-decoration: none; color: black;"><p><%=p.productId.title%></products>%></p></a>
-                <p style="color: grey">20,305 views | 3 days ago</p>
+      <div>
+     <video align="center" width="480" height="265" controls src="/<%= p.productId.VideoUrl%>#t=10" > <track kind="subtitles" src="foo.en.vtt" srclang="en" label="English">
+  <track kind="subtitles" src="foo.sv.vtt" srclang="sv" label="Svenska"></video>
+       <a href="#" style="text-decoration: none; color: black;"><p><%=p.productId.title%></products>%></p></a>
+        <p style="color: grey"><%=p.productId.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
+  <%if(isAuthor == true){%>
   <form action="/delete-video" method="POST">
  <input type="hidden" value="<%= p.productId._id%>" name="productId">
    <button class="btn2" type="submit">Delete</button>
-                                    </form>
-
+  </form>
+<%}%>
       </div>
       <%})%>
 <%}%>
   </div>
+ 
 
   <div class=" p-5 nav-item col-md-12 text-center " > 
-    <a href="galleries.html" class="btn btn-success btn-lg" role="button">Load more</a>
+    <!-- <a href="galleries.html" class="btn btn-success btn-lg" role="button">Load more</a> -->
   </div>
 
    <!--Footer-->
@@ -106,8 +210,7 @@
         </div>
         <div class="col-md-1"></div>
   </div>
-
-<script>
+<!-- <script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
 });
@@ -122,6 +225,152 @@ function loadDoc() {
   xhttp.open("GET", "ajax_info.txt", true);
   xhttp.send();
 }
-</script>
+</script> -->
+<script>
 
+var __PDF_DOC,
+	__CURRENT_PAGE,
+	__TOTAL_PAGES,
+	__PAGE_RENDERING_IN_PROGRESS = 0,
+	__CANVAS = $('#pdf-canvas').get(0),
+	__CANVAS_CTX = __CANVAS.getContext('2d');
+
+function showPDF(pdf_url) {
+	let content = document.getElementById('load-button');
+	console.log(content.innerHTML);
+	//$("#load-button").hide();
+	document.getElementById('load-button').innerHTML = "Hide Resume";
+	$("#pdf-loader").show();
+
+	PDFJS.getDocument({ url: pdf_url }, false, null, function(progress) {
+		var percent_loaded = (progress.loaded/progress.total)*100;
+
+		$("#pdf-loading-completed").css('width', percent_loaded + '%');
+	}).then(function(pdf_doc) {
+		__PDF_DOC = pdf_doc;
+		__TOTAL_PAGES = __PDF_DOC.numPages;
+		
+		// Hide the pdf loader and show pdf container in HTML
+		$("#pdf-loader").hide();
+		$("#pdf-contents").show();
+		$("#pdf-total-pages").text(__TOTAL_PAGES);
+
+		// Show the first page
+		showPage(1);
+	}).catch(function(error) {
+		// If error re-show the upload button
+		$("#pdf-loader").hide();
+		$("#load-button").show();
+		
+		alert(error.message);
+	});;
+}
+
+function showPage(page_no) {
+	__PAGE_RENDERING_IN_PROGRESS = 1;
+	__CURRENT_PAGE = page_no;
+
+	// Disable Prev & Next buttons while page is being loaded
+	$("#pdf-next, #pdf-prev").attr('disabled', 'disabled');
+
+	// While page is being rendered hide the canvas and show a loading message
+	$("#pdf-canvas").hide();
+	$("#page-loader").show();
+
+	// Update current page in HTML
+	$("#pdf-current-page").text(page_no);
+	
+	// Fetch the page
+	__PDF_DOC.getPage(page_no).then(function(page) {
+		// As the canvas is of a fixed width we need to set the scale of the viewport accordingly
+		var scale_required = __CANVAS.width / page.getViewport(1).width;
+
+		// Get viewport of the page at required scale
+		var viewport = page.getViewport(scale_required);
+
+		// Set canvas height
+		__CANVAS.height = viewport.height;
+
+		var renderContext = {
+			canvasContext: __CANVAS_CTX,
+			viewport: viewport
+		};
+		
+		// Render the page contents in the canvas
+		page.render(renderContext).then(function() {
+			__PAGE_RENDERING_IN_PROGRESS = 0;
+
+			// Re-enable Prev & Next buttons
+			$("#pdf-next, #pdf-prev").removeAttr('disabled');
+
+			// Show the canvas and hide the page loader
+			$("#pdf-canvas").show();
+			$("#page-loader").hide();
+		});
+	});
+}
+// function hidePage(page_no) {
+// 	__PAGE_RENDERING_IN_PROGRESS = 1;
+// 	__CURRENT_PAGE = page_no;
+
+// 	// Disable Prev & Next buttons while page is being loaded
+// 	$("#pdf-next, #pdf-prev").attr('disabled', 'disabled');
+
+// 	// While page is being rendered hide the canvas and show a loading message
+// 	$("#pdf-canvas").hide();
+// 	//$("#page-loader").show();
+
+	
+// 	÷
+// }
+
+// Upon click this should should load the PDF at http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf
+
+
+function hidePage() {
+	// __PAGE_RENDERING_IN_PROGRESS = 1;
+	// __CURRENT_PAGE = page_no;
+
+	// Disable Prev & Next buttons while page is being loaded
+	$("#pdf-next, #pdf-prev").attr('disabled', 'disabled');
+
+	// While page is being rendered hide the canvas and show a loading message
+	$("#pdf-canvas").hide();
+	
+	$("#pdf-contents").hide();
+	document.getElementById('load-button').innerHTML = "My Resume"
+	//$("#load-button").show();
+	
+	//$("#page-loader").show();
+
+	
+}
+$("#load-button").on('click', function() {
+  let src = document.getElementById('resume').src
+  	console.log(src);
+	if(document.getElementById('load-button').innerHTML == "Hide Resume"){
+		console.log("Here");
+    document.getElementById('resume').hidden = true;
+		hidePage()
+	}
+	else{
+    document.getElementById('resume').hidden = false;
+    document.getElementById('load-button').innerHTML = "Hide Resume";
+    }
+});
+// Previous page of the PDF
+
+
+
+$("#pdf-prev").on('click', function() {
+	if(__CURRENT_PAGE != 1)
+		showPage(--__CURRENT_PAGE);
+});
+// Next page of the PDF
+$("#pdf-next").on('click', function() {
+	if(__CURRENT_PAGE != __TOTAL_PAGES)
+		showPage(++__CURRENT_PAGE);
+});
+
+</script>
 </body>
