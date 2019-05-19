@@ -24,6 +24,23 @@
 
     <!-- Main CSS-->
     <link href="/css/main2.css" rel="stylesheet" media="all">
+    <style>
+    .user-message{
+  margin:auto;
+  width:90%;
+  border:1px, solid,#4771fa;
+  padding: 1rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+
+}
+
+.user-message--error{
+  border-color: red;
+  background: rgb(175, 86, 86)
+}
+    </style>
 </head>
 
 <body>
@@ -33,6 +50,9 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Join To Demo Court !</h2>
+                     <% if(errorMessage){%>
+            <div class="user-message use-message--error"><%=errorMessage%></div>
+            <%}%>
                     <form method="POST" action = "/register">
                         <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="NAME" name="username">

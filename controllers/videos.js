@@ -315,6 +315,7 @@ exports.getSingleVideo = (req, res, next) => {
                   video: video,
                   urlArray: videos,
                   isliked: global.isliked,
+                  user:req.user
                   //comments:comments
 
                 });
@@ -454,7 +455,7 @@ exports.getRankedVideos = (req, res, next) => {
         .sort({ starNumber: -1 })
         .then(videos2 => {
           deepLearning = videos2;
-          regex = new RegExp(escapeRegex("computer", "vision"), "gi");
+          regex = new RegExp(escapeRegex("vision"), "gi");
           Video.find({ title: regex })
             .sort({ starNumber: -1 })
             .then(videos3 => {
@@ -518,7 +519,7 @@ exports.getRankedVideos = (req, res, next) => {
 
 exports.searchVideos = (req, res, next) => {
   const regex = new RegExp(escapeRegex(req.query.search), "gi");
-  Video.find({ title: regex })
+  Video.find( { $or: [ { title: regex }, { description:regex} ] } )
     .then(videos => {
       res.render("searchResults", {
         videos: videos,

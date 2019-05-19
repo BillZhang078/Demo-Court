@@ -20,8 +20,15 @@ const router = express.Router()
 //router.get('/', userController.postLogin);
 
 exports.getLoginPage = (req, res)=> {
+  let errorMessage = req.flash('error');
+  if(errorMessage.length>0){
+    errorMessage = errorMessage[0];
+  }
+  else{
+    errorMessage = null;
+  }
   res.render('signin',{
-      errorMessage:req.flash('error')
+      errorMessage:errorMessage
   });
 }
 
@@ -58,7 +65,17 @@ exports.singIn = (req, res, next) => {
   };
 
 exports.getRegiserPage = (function (req, res) {
-  res.render('register2',{status:'A member'})
+  let errorMessage = req.flash('error');
+  if(errorMessage.length>0){
+    errorMessage = errorMessage[0];
+  }
+  else{
+    errorMessage = null;
+  }
+  res.render('register2',{
+    status:'A member',
+    errorMessage:errorMessage
+  })
 })
 
 exports.singUp = (req,res,next)=>{
