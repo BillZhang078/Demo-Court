@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Company</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<style type="text/css">
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
+  text-align: center;
+  background-color: #ffffff;
+}
+.requirement {
+  text-align: left;
+}
+.col-md-5{
+  text-align: left;
+}
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+} 
+
+
+</style>
+
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark row" >
+      <!-- Brand/logo -->
+      <!-- Links -->
+        <ul class="navbar-nav" >  
+        	<a  href="main.html" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
+          <li class="nav-item"><a class="nav-link text-dark" href="jobs.html"><h5>Jobs</h5></a></li>
+         
+        </ul>
+</nav>
+
+
+<div class="row">
+  <div class="col-md-9" >
+    <div class="card" style="padding-left: 15px;">
+      <img src="/images/d1.jpeg" alt="banner" style="height: 80px;" >
+      <a href="#"><img src="/images/c10.png" alt="logo" style="width: 70px; float: left; margin-top: -35px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" ></a>
+      </br>
+      <div class="title">
+        <h4 style=" text-align: left;"><%=job.title%></h4>
+        <p style=" text-align: left;"><b>Vodafone</b> . <%=job.location%></p>
+        <p style="color: grey; text-align: left;">Posted 3 weeks ago</p>
+      </div>
+      <div class="row">
+        <div class="col-md-7" >
+        <p style="text-align: justify;">At Vodafone, we put our customers at the heart of everything we do to give Australians more choice and freedom to connect the way they want. </br><%=job.description%></p>
+          <div class="requirement">
+          <p style="text-align: left;"><b >Knowledge & Experience Requirements</b></p>
+          <ul>
+            <li><%=job.requirement%></li>
+           
+          </ul>
+         </div>
+        </div>
+
+        <div class="col-md-5" >
+          <p> <b>Seniority Level</b></p>
+          <p>Entry level</p>
+          </br><p><b>Industry</b></p>
+          <p><%=job.major%></p>
+          </br><p><b>Employment Type</b></p>
+          <p><%=job.workType%></p>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3" > 
+  <h4>Jobs recently</h4>
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="main.html" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5>Senior Machine Learning </h5>
+              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
+              <p style="font-size: 10px; color: grey;">3 days ago</p>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+
+  
+
+ 
+
+<div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
+
+</body>
+</html>
+
+

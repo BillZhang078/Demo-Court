@@ -1,0 +1,91 @@
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href ="/css/signin.css">
+<style type="text/css">
+  .user-message{
+  margin:auto;
+  width:90%;
+  border:1px, solid,#4771fa;
+  padding: 1rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+
+}
+
+.user-message--error{
+  border-color: red;
+  background: rgb(175, 86, 86)
+}
+</style>
+</head>
+<body>
+<div class="login-form">
+    <form action="/login" method="post">
+        <h2 class="text-center">Sign in</h2>   
+        <div class="form-group">
+          <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="email" placeholder="Username" required="required">       
+            </div>
+        </div>
+     <% if(errorMessage){%>
+            <div class="user-message use-message--error"><%=errorMessage%></div>
+            <%}%>
+    <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">       
+            </div>
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me &nbsp; </label>
+            <a href="forgetpass.html" data-toggle="modal" data-target="#myModal">Forgot Password?</a>
+        </div>
+    <!-- <div class="or-seperator"><i>or</i></div>
+        <p class="text-center">Login with your social media account</p>
+        <div class="text-center social-btn">
+            <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+            <a href="#" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
+      <a href="#" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+        </div> -->
+    </form>
+    <p class="text-center text-muted small">Don't have an account? <a href="/register">Sign up here!</a></p>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align: center;">Forgot your password</h4>
+        </div>
+        <div class="modal-body">
+          <p style="text-align: center;">Please enter your email address and we'll send a link to change your password.</p>
+          <form method = "POST" action = '/postReset'> 
+              <label for="fname">Email address: &nbsp;&nbsp;</label>
+              <input type="text" style="width: 50%;" id="fname" name="email">
+               <div class="modal-footer">
+          <a data-dismiss="modal">Cancel &nbsp;&nbsp;&nbsp;</a>
+          <button type="submit" >Send</button>
+        </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</body>

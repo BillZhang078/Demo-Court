@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Personal page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//vjs.zencdn.net/7.3.0/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/7.3.0/video.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href ="/css/personalpage.css">
+  <style type="text/css">
+  .hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/banner.jpg");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
+    <!-- Brand/logo -->
+    <a  href="/">
+      <img src="/images/logo3.png" alt="logo" style="width: 75px;">
+    </a>
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <%if(isAuthor == true){%>
+        <li class="nav-item"><a class="nav-link text-dark" href='/editProfile'><h5>Setting |</h5></a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href='/personal'><h5>Personal |</h5></a></li>
+        <%}%>
+        <li class="nav-item"><a class="nav-link text-dark" href="index.html"><h5>Sign Out |</h5></a></li>
+        <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
+          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+        </form>
+    </ul>
+  </nav>
+  <div class=" mh-100 p-5 container-fluid bg-light hero-image">
+    <img src="/images/visitor2.jpeg"  class=" center rounded-circle" style="position: absolute; top: 50%; left: 40%;" alt="Cinque Terre" width="200" height="200" >
+  </div>
+  <div class="p-5"></div>
+  <div class=" text-center">
+    <h1><%=username%>/Likes</h1> 
+  </div>
+
+  <div class=" grid-container " >
+        <%if (products.length>0) {%>
+        <%products.forEach(p=> {%>
+      <div>
+     <video align="center" width="480" height="265" controls src="/<%= p.productId.VideoUrl%>#t=10" > <track kind="subtitles" src="foo.en.vtt" srclang="en" label="English">
+  <track kind="subtitles" src="foo.sv.vtt" srclang="sv" label="Svenska"></video>
+       <a href="#" style="text-decoration: none; color: black;"><p><%=p.productId.title%></products>%></p></a>
+        <p style="color: grey">20,305 views | 3 days ago</p>
+  <%if(isAuthor == true){%>
+  <form action="/delete-video" method="POST">
+ <input type="hidden" value="<%= p.productId._id%>" name="productId">
+  </form>
+<%}%>
+      </div>
+      <%})%>
+<%}%>
+  </div>
+  <script src="/js/scripts.js"></script>
+
+  <!-- <div class=" p-5 nav-item col-md-12 text-center " > 
+    <a href="galleries.html" class="btn btn-success btn-lg" role="button">Load more</a>
+  </div> -->
+
+   <!--Footer-->
+    
+  <div class="row footer_middle bg-light" style="border: 1px solid grey; ">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <ul class="footer_links demo center" style="list-style: none; border-left-style: none;">
+              <li><a href="# " style="color: black">DemmoCourt</a></li> 
+              <li><a href="#" style="color: black">Upload</a></li> 
+              <li><a href="#" style="color: black">Galleries</a></li> 
+          </ul>
+        </div>
+        <div class="col-md-3">  
+          <ul class="footer_links demo" style="list-style: none;">
+            <li><a href=" " style="color: black">About </a></li> 
+            <li><a href=" " style="color: black">Terms of Service</a></li>
+            <li><a href=" " style="color: black">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">  
+          <ul class="footer_links demo" style="list-style: none;">
+              <li><a href=" " style="color: black">Sign Up / Create Account</a></li> 
+              <li><a href=" " style="color: black">Log In</a></li> 
+              <li><a href=" " style="color: black">Forgot Password?</a></li> 
+          </ul>
+        </div>
+        <div class="col-md-1"></div>
+  </div>
+<!-- <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+});
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+</script> -->
+
+</body>

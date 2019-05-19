@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> PLayvideo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200">
+    <link rel="stylesheet" href="/css/style3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
+  <link rel="stylesheet" type="text/css" href="/css/main19.css">
+  <link rel="stylesheet" type="text/css" href="/css/playvideo.css">
+
+
+</head>
+<style type="text/css">
+ul#menu li {
+  display:inline;
+}
+</style>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-white navbar-dark" style="margin-bottom: 0">
+    <!-- Brand/logo -->
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <a  href="/">
+        <img src="/images/logo3.png" alt="logo" style="width: 70px;"></a>
+
+
+
+
+        <form action = "/searchResults" methdo = "GET" class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "search">
+          <button class="btn btn-success float-right" type="submit"  >Search</button> 
+          <!-- <a href="signup.html" ><h5> &nbsp;&nbsp;&nbsp;&nbsp;SIGN IN &nbsp;&nbsp;&nbsp;&nbsp;</h5></a> -->
+          
+        </form>
+    </ul>
+  </nav>
+
+ 
+  
+
+<div class="p-5 container-fluid bg-light">
+  
+  <div class=" row">
+    <div class=" col-md-9" >
+      <div class=" grid-container p-2"  >
+          
+          <div> 
+     <video aligns="centerr" width = "940" height = '530' src="/<%= video.VideoUrl%>#" controls autoplay> </video>
+     
+        <a href="#" style="text-decoration: none; color: black;"><p><h4><%=video.title%></h4></p></a>
+        <!-- <p style="color: grey"><%= video.visitTimes%> views </p> -->
+       <ul id ="menu" style="text-decoration-line: none;">
+                       <%if(isliked == false){%>
+	                  <div><%= video.visitTimes%> views &nbsp;<a id = "like"><span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes</a>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "likeVideos">Like</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal"> <img src="/images/share1.png" alt="Submit" width="30"></a></div> 
+                      
+                       <%}%>
+                       <%if(isliked == true){%>
+                    <div ><%= video.visitTimes%> views &nbsp;<span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "unlikeVideos">unlike</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal"> <img src="/images/share1.png" alt="Submit" width="30"></a></div>
+                    
+                     <%}%>
+                     
+                       </ul>
+          </div>
+      </div>
+      
+      <div> 
+        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
+        <div class="row">
+          <div class="col-md-1" >
+          </div>
+          <div class="col-md-11" >
+            <p>  <%=video.discription%></p>
+             <div class="flash-comments">
+                <div class="header">
+                </div>
+                <form class="pure-form" id="comment-form">
+                    <div class="comment-form">
+                        <div class="left-side">
+                            <div class="row">
+                                <textarea placeholder="Sharing your ideas with people who is wacthing this video" required id="new_comment_text" rows="10" cols = "33" name = "comment"></textarea>
+                                <input id= "postId" value = "<%=video._id%>" hidden>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <button 
+                                type="submit" 
+                                class="button-secondary pure-button">Send message</button>
+                        </div>
+                    </div>
+                </form>
+              
+                 <div class="comments-list" id="comments-list">
+                        <script id="comment-template" type="text/x-template">
+                            <div class="user-icon">
+                                <img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="50" height="50">
+                            </div>
+                            <div class="comment-info">
+                                <div class="row">
+                                    <div class="name"><%= user.username%></div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="text">{{comment}}</div>
+                                </div>
+                            </div>
+                        </script>
+                </div>
+            </div>
+        </section>
+       
+        <script type="text/javascript" src="https://js.pusher.com/3.2/pusher.min.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3" > <h4>More from <%= video.user.username%></h4> 
+      <%if (urlArray.length>0) {%>
+        <%urlArray.forEach(url=> {%>
+        <%if(url.productId.VideoUrl !== video.VideoUrl){%>
+      <div>
+       <a href = "/getSingleVideo/<%= url.productId._id%>"> <video align="center" width="220" height="145" src="/<%= url.productId.VideoUrl%>#t=8" >
+                    </video></a>
+                    <a href = "/getSingleVideo/<%= url.productId._id%>" style="text-decoration: none; color: black;"><p><%= url.productId.title%></p></a>
+                    <p style="color: grey"><%= url.productId.visitTimes%> views </p>
+      </div>
+      <%}%>
+     <%})%>
+<%}%>
+      
+    </div>
+  </div>
+  
+
+
+  
+  <div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title" style="text-align: center;">Share a link</h4>
+        </div>
+        <div class="modal-body">
+         <ul style="margin: auto;">
+         	<a href="https://www.facebook.com/sharer.php?title=填上你的标题&u=https://localhost:3000/getSingleVideo/<%=video._id%> target="_blank"><img src="/images/face.png" width="40"></a>
+         	<!-- <a href="https://twitter.com/intent/tweet?text=Hello%20world"><img src="/images/insta.jpeg" width="40"></a> -->
+         	<a href="https://twitter.com/intent/tweet?text=Hello%20world" target="_blank"><img src="/images/twit.png" width="40"></a>
+         </ul>
+        </div>
+        <div class="modal-footer">
+          <a data-dismiss="modal">Cancel &nbsp;&nbsp;&nbsp;</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+});
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  var updatePostStats = {
+    Like: function (postId) {
+      document.querySelector('#likes-count-' + postId).textContent++;
+    },
+    unlike: function(postId) {
+      document.querySelector('#likes-count-' + postId).textContent--;
+    }
+  };
+  var toggleButtonText = {
+    Like: function(button) {
+      button.textContent = "unlike";
+    },
+    unlike: function(button) {
+      button.textContent = "Like";
+    }
+  };
+  var actOnPost = function (event) {
+    var postId = event.target.dataset.postId;
+    var action = event.target.textContent.trim();
+    console.log(action);
+    toggleButtonText[action](event.target);
+    updatePostStats[action](postId);
+   
+   var url = document.getElementById('like-unlike').value;
+    axios.post('/'+url+'/' + postId, { action: action });
+    
+   
+  };
+</script>
+   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+  var pusher = new Pusher('0a886161c701a186dced', {
+    cluster: 'ap4'
+         
+  });
+  var socketId;
+ 
+  // retrieve the socket ID on successful connection
+  pusher.connection.bind('connected', function() {
+    socketId = pusher.connection.socket_id;
+  });
+  var channel = pusher.subscribe('post-events');
+  channel.bind('postAction', function(data) {
+    // log message data to console - for debugging purposes
+    console.log(data);
+    var action = data.action;
+    updatePostStats[action](data.postId);
+  });
+</script>
+   
+</body>
+
+</html>

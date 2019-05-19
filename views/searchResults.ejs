@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+</script>
+<script src="jquery.hoverplay.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
+<style>
+ul.demo {
+  list-style-type: none;
+}
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 7px;
+  font-size: 15px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #ffffff;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 7px;
+  background: #f1f1f1;
+  color: grey;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #f1f1f1;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+</style>
+
+
+</head>
+
+  
+  <!--Style for footer -->
+  <style>
+
+.bg-img {
+  /* The image used */
+  background-image: url("img1.jpg");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+/* Make the image fully responsive */
+  .carousel-inner img {
+      width: 75%;
+      height: 75%;
+  }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+</style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-sm navbar-dark row" >
+       
+        <div class="col-md-3" >   
+          	<a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px; "></a>
+        </div>
+        <div class="col-md-7" >
+          <form class="example"  style="margin:auto; max-width:400px " action="searchResults">
+            <input type="text" placeholder="Search..." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+        <div class="col-md-2" >
+          <ul class="navbar-nav" >
+            
+            <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='/personal' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+            <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+          </ul>
+      </div>
+  </nav>
+  <div  class =" bg-light" >
+  <div class="container  ">
+    <h4>Related results</h4>
+    <div class="row">
+    <%if(videos.length>0){%>
+    <%videos.forEach(p=>{%>
+      <div class="col-md-4">
+      <a href = "/getSingleVideo/<%= p._id%>">
+        <video width="290" height="165" src="/<%= p.VideoUrl%>#t=10" class = "portfolio-vid" controls data-play="hover" muted="muted"></video>
+        </a>
+      </div>
+      <div class="col-md-8" >
+        <p><h4><a href="playvideo.html" style="color: black; text-decoration-line: none;"><%=p.title%></a></h4></p>
+        <ul class="list-inline">
+          <a href="personalpage.html" style="text-decoration-line: none; color: grey;">&nbsp <%=p.user.username%></a>
+          <a href="playvideo.html" style="color: grey;"> &nbsp. <%=p.visitTimes%> views</a>
+          <a href="playvideo.html" style="color: grey;"> &nbsp. <%=moment(p.created_time).fromNow()%></a>
+        </ul>
+      </div>
+      <%})%>
+    <%}%>
+
+    </div>
+
+  </div>
+</div>
+  
+  </div>
+  <div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
+
+  
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+});
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+
+</script>
+
+</body>
+</html>

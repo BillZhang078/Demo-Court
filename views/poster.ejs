@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Upload page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/uploadpage.css">
+</head>
+
+<body background="images/bg_upload.jpg">
+  <div class="p-5"></div>
+    <div class="row" >
+      <div class="col-md-3"></div>  
+      <div class="col-md-6 ">
+        <div class="p-3 container-fluid bg-light">
+          <h3 class="text-lg-center" > Give a title and description to your video</h3>
+          
+        </div>
+
+      <div class=" p-3 container-fluid bg-light">
+        <form action="/getTitle/<%=newVideo._id%>" method="post"  id="register_form" >
+           <div class="p-2 form-group">
+            <label class="comment">Project Title:</label>
+            <textarea class="form-control" rows="2" id="comment" name="title"></textarea>
+            <div class="p-2"></div>
+            <label class="comment">Description:</label>
+            <textarea class="form-control" rows="4" id="comment" name="description"></textarea> 
+          </div>
+    
+          </div>
+          <br/>
+          <button type="submit" class="btn-primary btn-sm" >Save</button>
+        </form>
+        
+   
+        <a href="/personal" style="float: right;" class="btn-primary btn-sm" role="button">Back your page</a>
+      </div>
+      <div class="col-md-3"></div> 
+    </div>
+  </div>
+</body>
+</html>
