@@ -112,3 +112,48 @@ exports.searchJobs = (req, res, next) => {
             console.log(err);
         })
   };
+  exports.deleteJobs = (req, res, next) => {
+    const prodId = req.body.JobId;
+    console.log(prodId);
+    req.user
+      .removeFromCart(prodId)
+      .then(() => {
+        Job.findByIdAndRemove(prodId)
+          .then(() => {
+            console.log("Delete Successfully");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+  
+        res.redirect("/company");
+      })
+      .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
+  };
+  
+  exports.updateJob = (req, res, next) => {
+    const prodId = req.body.JobId;
+    console.log(prodId);
+    req.user
+      .removeFromCart(prodId)
+      .then(() => {
+        Job.findByIdAndRemove(prodId)
+          .then(() => {
+            console.log("Delete Successfully");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+  
+        res.redirect("/company");
+      })
+      .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
+  };
