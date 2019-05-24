@@ -574,7 +574,7 @@ exports.getRankedVideos = (req, res, next) => {
                     isRobotic: true,
                     pages: 0,
                     user:req.user,
-                    type: req.user.type,
+                    //type: req.user.type,
                     moment: moment
                   });
                 })
