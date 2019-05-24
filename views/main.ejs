@@ -135,7 +135,7 @@ body, html {
           <%if(LoggedIn){%>
         <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign out |</h5></a></li>
         <li class="nav-item"><a class="nav-link text-dark" href="/getJobs/1"><h5>Job List |</h5></a></li>
-        <%if(user.type === "Sign up as employee member"){%>
+        <%if(user.type == "Sign up as employee member"){%>
         <li class="nav-item"><a class="nav-link text-dark" href="/personal"><h5>Personal Page</h5></a></li>
         <%}else{%>
         <li class="nav-item"><a class="nav-link text-dark" href="/companyPage"><h5>Company Page</h5></a></li>
