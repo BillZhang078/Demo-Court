@@ -41,7 +41,9 @@ exports.getRankPage = (req, res, next) => {
             isPaginationD: false,
             isPaginationV: false,
             isPaginationR: false,
+            type:req.user.type,
             pages: Math.ceil(count / perPage),
+            user:req.user,
             moment:moment
           });
         })
@@ -86,8 +88,10 @@ exports.getDeepLearningPage = (req, res, next) => {
             isPaginationD: true,
             isPaginationV: false,
             isPaginationR: false,
+            type:req.user.type,
             LoggedIn: true,
             pages: Math.ceil(count / perPage),
+            user:req.user,
             moment:moment
           });
         })
@@ -134,7 +138,9 @@ exports.getRoboticPage = (req, res, next) => {
             isPaginationD: false,
             isPaginationV: false,
             isPaginationR: true,
+            type:req.user.type,
             pages: Math.ceil(count / perPage),
+            user:req.user,
             moment:moment
           });
         })
@@ -184,8 +190,10 @@ exports.getComputerVisionPage = (req, res, next) => {
             isPaginationD: false,
             isPaginationV: true,
             isPaginationR: false,
+            type:req.user.type,
             pages: Math.ceil(count / perPage),
-            moment:moment
+            moment:moment,
+            user:req.user
           });
         })
         .catch(err => {

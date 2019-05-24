@@ -43,13 +43,13 @@
         <%}%>
         <li class="nav-item"><a class="nav-link text-dark" href="index.html"><h5>Sign Out |</h5></a></li>
         <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
           <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
         </form>
     </ul>
   </nav>
   <div class=" mh-100 p-5 container-fluid bg-light hero-image">
-    <img src="/images/visitor2.jpeg"  class=" center rounded-circle" style="position: absolute; top: 50%; left: 40%;" alt="Cinque Terre" width="200" height="200" >
+    <img src="<%=user.avatar%>"  class=" center rounded-circle" style="position: absolute; top: 50%; left: 40%;" alt="Cinque Terre" width="200" height="200" >
   </div>
   <div class="p-5"></div>
   <div class=" text-center">

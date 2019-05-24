@@ -82,6 +82,7 @@ exports.singUp = (req,res,next)=>{
     const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
+    const type = req.body.type;
     return bcryptjs.hash(password,12)
     .then(hashedPassword=>{
         const user  = new User({
@@ -91,7 +92,9 @@ exports.singUp = (req,res,next)=>{
             description:'',
             university:'',
             major:'',
+            avatar:'/images/defaultAvatar.png',
             location:'',
+            type:type,
             videoCollection:{ videos:[{quantity:0}] }
         });
         return user.save();
@@ -120,7 +123,7 @@ exports.singUp = (req,res,next)=>{
 exports.signOut = (req, res,next)=>{
   req.session.destroy((err)=>{
     console.log(err);
-    res.redirect('/');
+    res.redirect('/p');
   });
  
 }
@@ -135,7 +138,8 @@ exports.getEditPage = (req,res,next)=>{
         phoneNumber:req.user.phoneNumber,
         location:req.user.location,
         avatar:req.user.avatar,
-        createTime:moment(req.user.created_time).format('LL')
+        createTime:moment(req.user.created_time).format('LL'),
+        user:req.user
     });
 }
 exports.EditAvatar = (req, res, next) => {
@@ -304,10 +308,10 @@ exports.getAuthorPgae = (req,res,next)=>{
     .then(user => {
       const products = user.cart.items;
       res.render("personalPage", {
-        username: req.user.username,
+        username: user.username,
         products: products,
         number: products.length,
-        image: req.user.avatar,
+        image: user.avatar,
         description: user.description,
         email:user.email,
         isAuthor :false,
@@ -341,6 +345,7 @@ exports.getAccountPage = (req,res,next)=>{
   return res.render("editaccount.ejs",{
     errorMessage:message,
     email:req.user.email,
+    user:req.user,
     createTime:moment(req.user.created_time).format('LL')
   });
 }

@@ -1,10 +1,11 @@
 const Video = require("../models/videos");
 const User = require("../models/user");
-const moment = require('moment');
-var Pusher = require('pusher');
+const Job = require("../models/jobs");
+const moment = require("moment");
+var Pusher = require("pusher");
 const RankedVideo = require("../models/rankedVideo");
 const Comment = require("../models/comment");
-require('dotenv').config();
+require("dotenv").config();
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
@@ -16,6 +17,7 @@ exports.getUploadPage = (req, res, next) => {
   res.render("uploadPage");
 };
 exports.getPersonalPage = (req, res, next) => {
+  console.log(req.user);
   if (!req.session.isLoggedIn) {
     return res.redirect("/login");
   }
@@ -26,19 +28,20 @@ exports.getPersonalPage = (req, res, next) => {
       const products = user.cart.items;
       console.log(products);
       products.forEach(element => {
-       // console.log(element.productId);
+        // console.log(element.productId);
       });
       res.render("personalPage", {
         username: req.user.username,
+        user:req.user,
         products: products,
         number: products.length,
-        resume:req.user.resume,
+        resume: req.user.resume,
         image: req.user.avatar,
         description: req.user.description,
         avatar: req.user.avatar,
         isAuthor: true,
         email: req.user.email,
-        moment:moment
+        moment: moment
       });
     })
     .catch(err => {
@@ -222,9 +225,9 @@ exports.uploadVideo = (req, res, next) => {
     .then(result => {
       req.user.addToCart(video);
       console.log(result);
-      res.render('poster',{
-          newVideo:video
-      })
+      res.render("poster", {
+        newVideo: video
+      });
     })
     .catch(err => {
       console.log(err);
@@ -294,34 +297,29 @@ exports.getSingleVideo = (req, res, next) => {
               .populate("likecart.items.productId")
               .execPopulate()
               .then(user => {
-                Comment.find({postId:videoId})
-                .populate({path:'author',model:'User'})
-                .sort({_id:1})
-                .then(comments=>{
-                    
+                Comment.find({ postId: videoId })
+                  .populate({ path: "author", model: "User" })
+                  .sort({ _id: 1 })
+                  .then(comments => {
                     const likeVideos = user.likecart.items;
-                if (likeVideos.length == 0) {
-                  global.isliked = false;
-                }
-                for (let i = 0; i < likeVideos.length; i++) {
-                  if (likeVideos[i].productId.VideoUrl === video.VideoUrl) {
-                    global.isliked = true;
-                    break;
-                  } else global.isliked = false;
-                }
-               
-             
-                return res.render("videoPlay", {
-                  video: video,
-                  urlArray: videos,
-                  isliked: global.isliked,
-                  user:req.user
-                  //comments:comments
+                    if (likeVideos.length == 0) {
+                      global.isliked = false;
+                    }
+                    for (let i = 0; i < likeVideos.length; i++) {
+                      if (likeVideos[i].productId.VideoUrl === video.VideoUrl) {
+                        global.isliked = true;
+                        break;
+                      } else global.isliked = false;
+                    }
 
-                });
-                    
-              })
-                
+                    return res.render("videoPlay", {
+                      video: video,
+                      urlArray: videos,
+                      isliked: global.isliked,
+                      user: req.user
+                      //comments:comments
+                    });
+                  });
               })
               .catch(err => {
                 console.log(err);
@@ -335,9 +333,9 @@ exports.getSingleVideo = (req, res, next) => {
 };
 
 exports.increaseStarNumbers = (req, res, next) => {
-    if (!req.session.isLoggedIn) {
-        return res.redirect("/login");
-      }
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
   const videoId = req.params.videoId;
   let path = videoId.toString();
   console.log("Cool");
@@ -349,7 +347,8 @@ exports.increaseStarNumbers = (req, res, next) => {
       }
       //console.log(newNumber);
       video.starNumber = video.starNumber + 1;
-      if (video.starNumber > 1) {
+      video.user.userId.like++;
+      if (video.starNumber > 4) {
         const newVideo = new RankedVideo();
         newVideo._id = video._id;
         newVideo.starNumber = video.starNumber;
@@ -379,8 +378,13 @@ exports.increaseStarNumbers = (req, res, next) => {
         });
     })
     .then(result => {
-        pusher.trigger('post-events', 'postAction', { action: action, postId: req.params.videoId }, req.body.socketId);
-        res.send('');
+      pusher.trigger(
+        "post-events",
+        "postAction",
+        { action: action, postId: req.params.videoId },
+        req.body.socketId
+      );
+      res.send("");
     })
     .catch(err => {
       console.log(err);
@@ -388,9 +392,9 @@ exports.increaseStarNumbers = (req, res, next) => {
 };
 
 exports.decreaseStarNumbers = (req, res, next) => {
-    if (!req.session.isLoggedIn) {
-        return res.redirect("/login");
-      }
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
   console.log(req.params);
   const videoId = req.params.videoId;
   Video.findById(videoId)
@@ -435,6 +439,86 @@ exports.decreaseStarNumbers = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
+    });
+};
+exports.getRankedVideos1 = (req, res, next) => {
+  let rankedVideo = new Array();
+  let deepLearning = new Array();
+  let computerVision = new Array();
+  let robotic = new Array();
+  Video.find()
+    .sort({ starNumber: -1 })
+    .limit(8)
+    .then(videos1 => {
+      //console.log(videos);
+      rankedVideo = videos1;
+      //console.log(rankedVideo);
+      let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
+      Video.find({ title: regex })
+        .sort({ starNumber: -1 })
+        .then(videos2 => {
+          deepLearning = videos2;
+          regex = new RegExp(escapeRegex("vision"), "gi");
+          Video.find({ title: regex })
+            .sort({ starNumber: -1 })
+            .then(videos3 => {
+              computerVision = videos3;
+              regex = new RegExp(escapeRegex("robot"), "gi");
+              //console.log(rankedVideo);
+              Video.find({ title: regex })
+                .sort({ starNumber: -1 })
+                .then(videos4 => {
+                  robotic = videos4;
+                  console.log(rankedVideo.length);
+                  console.log(computerVision.length);
+                  console.log(deepLearning.length);
+                  console.log(robotic.length);
+                  return res.render("main", {
+                    rankedVideoLength: rankedVideo.length,
+                    computerVisionLength: computerVision.length,
+                    deepLearningLength: deepLearning.length,
+                    roboticLength: robotic.length,
+                    rankedVideo: rankedVideo,
+                    computerVision: computerVision,
+                    deepLearning: deepLearning,
+                    robotic: robotic,
+                    LoggedIn: req.session.isLoggedIn,
+                    isRanked: true,
+                    isPaginationP: false,
+                    isPaginationD: false,
+                    isPaginationV: false,
+                    isPaginationR: false,
+                    isDeep: true,
+                    isVision: true,
+                    isRobotic: true,
+                    pages: 0,
+                    type: "",
+                    moment: moment,
+                    user:req.user
+                  });
+                })
+                .catch(err => {
+                  const error = new Error(err);
+                  error.httpStatusCode = 500;
+                  console.log(error);
+                });
+            })
+            .catch(err => {
+              const error = new Error(err);
+              error.httpStatusCode = 500;
+              console.log(error);
+            });
+        })
+        .catch(err => {
+          const error = new Error(err);
+          error.httpStatusCode = 500;
+          console.log(error);
+        });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
     });
 };
 
@@ -489,7 +573,9 @@ exports.getRankedVideos = (req, res, next) => {
                     isVision: true,
                     isRobotic: true,
                     pages: 0,
-                    moment:moment
+                    user:req.user,
+                    type: req.user.type,
+                    moment: moment
                   });
                 })
                 .catch(err => {
@@ -519,11 +605,12 @@ exports.getRankedVideos = (req, res, next) => {
 
 exports.searchVideos = (req, res, next) => {
   const regex = new RegExp(escapeRegex(req.query.search), "gi");
-  Video.find( { $or: [ { title: regex }, { description:regex} ] } )
+  Video.find({ $or: [{ title: regex }, { description: regex }] })
     .then(videos => {
+      console.log(videos.length);
       res.render("searchResults", {
         videos: videos,
-        moment:moment
+        moment: moment
       });
     })
     .catch(err => {
@@ -537,9 +624,9 @@ exports.test = (req, res, next) => {
   res.render("test1");
 };
 exports.getLikePage = (req, res, next) => {
-    if (!req.session.isLoggedIn) {
-        return res.redirect("/login");
-      }
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
   if (!req.session.isLoggedIn) {
     return res.redirect("/login");
   }
@@ -553,6 +640,7 @@ exports.getLikePage = (req, res, next) => {
       });
       res.render("likePage", {
         username: req.user.username,
+        user:req.user,
         products: products,
         number: products.length,
         image: req.user.avatar,
@@ -569,28 +657,53 @@ exports.getLikePage = (req, res, next) => {
     });
 };
 
-exports.getPosterPage = (req,res,next)=>{
-    res.render("poster");
-}
+exports.getPosterPage = (req, res, next) => {
+  res.render("poster");
+};
 
-exports.getPoster = (req,res,next)=>{
-    const videoId = req.params.videoId;
-    const title = req.body.title;
-    const description = req.body.description;
-    console.log(title);
-    Video.findById(videoId)
-    .then(video=>{
-        video.title = title;
-        video.description = description;
-        video.save()
-        .then(result=>{
-            res.redirect('/personal');
+exports.getPoster = (req, res, next) => {
+  const videoId = req.params.videoId;
+  const title = req.body.title;
+  const description = req.body.description;
+  console.log(title);
+  Video.findById(videoId)
+    .then(video => {
+      video.title = title;
+      video.description = description;
+      video
+        .save()
+        .then(result => {
+          res.redirect("/personal");
         })
-        .catch(err=>{
-            console.log(err);
-        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-    .catch(err=>{
-        console.log(err);
+    .catch(err => {
+      console.log(err);
+    });
+};
+exports.getCompanyPage = (req, res, next) => {
+  console.log(req.user);
+  req.user
+    .populate("jobs.items.jobId")
+    .execPopulate()
+    .then(user => {
+      const products = user.jobs.items;
+      //console.log(products);
+      products.forEach(element => {
+        // console.log(element.productId);
+      });
+      res.render("companyPage", {
+        products: products,
+        user: user,
+        isAuthor: true,
+        moment:moment
+      });
     })
-}
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};

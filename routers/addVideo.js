@@ -11,12 +11,13 @@ const getSingleVideo = require("../controllers/videos").getSingleVideo;
 const increaseStartNumbers = require("../controllers/videos").increaseStarNumbers;
 const decreaseStarNumbers = require("../controllers/videos").decreaseStarNumbers;
 const getRankedVidoes = require('../controllers/videos').getRankedVideos;
+const getRankedVidoes1 = require('../controllers/videos').getRankedVideos1;
 const searchVideos = require('../controllers/videos').searchVideos;
 const getLikePage = require('../controllers/videos').getLikePage;
 const getPosterPage = require('../controllers/videos').getPosterPage;
 const getPoster = require('../controllers/videos').getPoster;
 const test = require('../controllers/videos').test;
-
+const getCompanyPage = require('../controllers/videos').getCompanyPage;
 const router1 = express.Router();
 
 
@@ -29,12 +30,13 @@ router1.get('/getSingleVideo/:videoId/',getSingleVideo);
 //router1.post('/likeVideos/:videoId',increaseStartNumbers);
 //router1.post('/unlikeVideos/:videoId',decreaseStarNumbers);
 router1.get('/hotVideos',getRankedVidoes);
+router1.get('/p',getRankedVidoes1);
 router1.get('/searchResults',searchVideos);
-router1.post('/test',test);
+router1.get('/test',test);
 router1.get('/likePage/',getLikePage);
 router1.get('/uploadPoster',getPosterPage);
 router1.post('/getTitle/:videoId/',getPoster);
-
+router1.get('/companyPage',getCompanyPage);
 
 //router.delete('/delete');
 ///router.update('/update');

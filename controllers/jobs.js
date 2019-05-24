@@ -1,35 +1,40 @@
 const Job = require('../models/jobs');
 const Company = require('../models/jobs');
+const User = require('../models/user');
+var session = require('express-session')
+var ObjectId = require('mongodb').ObjectID;
+const moment = require('moment');
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   }
 exports.getPostJob = (req,res,next)=>{
+    
     const jobTitle = req.body.jobtitle;
     const category = req.body.category;
     const discription = req.body.description;
     const location = req.body.location;
     const workType = req.body.workType;
     const requirement = req.body.requirement
-
+  
     const company = {
         name:req.user.username,
         avatar:req.user.avatar,
-        companyId:req.user
+        userId:req.user
     }
-
+    console.log(company);
     const newJob = new Job({
         title:jobTitle,
         category:category,
         description:discription,
         location:location,
         workType:workType,
-        company:company,
+        User:company,
         requirement:requirement
         
     })
     newJob.save()
     .then(result=>{
-        req.user.addToCart(newJob);
+        req.user.addToJob(newJob);
         res.redirect('/getJobs/1');
     })
     .catch(err=>{
@@ -49,7 +54,8 @@ exports.getAllJobs = (req,res,next)=>{
             res.render("jobList",{
                 jobs:jobs,
                 current: page,
-                pages:Math.ceil(count/perPage)
+                pages:Math.ceil(count/perPage),
+                user:req.user
             })
         })
        .catch(err=>{
@@ -71,7 +77,9 @@ exports.getSingleJob = (req,res,next)=>{
         .then(jobs=>{
             res.render("singleJob",{
                 job:job,
-                jobs:jobs
+                jobs:jobs,
+                user:req.user,
+                moment:moment
             })
         }) 
         .catch(err=>{
@@ -113,10 +121,10 @@ exports.searchJobs = (req, res, next) => {
         })
   };
   exports.deleteJobs = (req, res, next) => {
-    const prodId = req.body.JobId;
+    const prodId = req.params.jobId;
     console.log(prodId);
     req.user
-      .removeFromCart(prodId)
+      .removeFromJob(prodId)
       .then(() => {
         Job.findByIdAndRemove(prodId)
           .then(() => {
@@ -126,7 +134,7 @@ exports.searchJobs = (req, res, next) => {
             console.log(err);
           });
   
-        res.redirect("/company");
+        res.redirect("/companyPage");
       })
       .catch(err => {
         const error = new Error(err);
@@ -135,6 +143,20 @@ exports.searchJobs = (req, res, next) => {
       });
   };
   
+  exports.editJob = (req,res,next)=>{
+    const prodId = req.params.jobId;
+    console.log(prodId);
+    Job.findById(prodId)
+    .then(job=>{
+        res.render('editJob',{
+           job:job,
+           user:req.user
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+  }
   exports.updateJob = (req, res, next) => {
     const prodId = req.body.JobId;
     console.log(prodId);
@@ -157,3 +179,183 @@ exports.searchJobs = (req, res, next) => {
         return next(error);
       });
   };
+
+  exports.getCompanyProfilePage = (req,res,next)=>{
+  
+    if(!req.session.isLoggedIn){
+      return res.redirect('/login');
+    }
+    res.render('editcompanyprofile',{
+        discription: req.user.description,
+        name:req.user.username,
+        website:req.user.website,
+        phoneNumber:req.user.phoneNumber,
+        location:req.user.location,
+        avatar:req.user.avatar,
+        createTime:moment(req.user.created_time).format('LL')
+    });
+}
+
+exports.EditTitle = (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.title = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditLocation = (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.location = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditCategory = (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.category = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.EditWorkType= (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.workType = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  exports.EditDescription= (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.description = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  exports.EditRequirement= (req, res, next) => {
+    const content = req.body.content;
+    console.log(content);
+    const jobId = req.params.jobId;
+    console.log(jobId);
+   
+    Job.findById(jobId)
+      .then(job => {
+        job.requirement = content;
+        return job.save();
+      })
+      .then(result => {
+        const newId = ObjectId(jobId).toString();
+        console.log('UPDATED Profile!');
+        res.redirect('/editJob/'+newId);
+      })
+      .catch(err => console.log(err));
+  };
+//   exports.getCompanyPage = (res,req,next)=>{
+//       console.log(req.user);
+//     req.session.user
+//     .populate("job.items.jobId")
+//     .execPopulate()
+//     .then(user => {
+//       const products = user.job.items;
+//       console.log(products);
+//       products.forEach(element => {
+//        // console.log(element.productId);
+//       });
+//       res.render("companyPage", {
+//         username: req.user.username,
+//         products: products,
+//         //number: products.length,
+//         //resume:req.user.resume,
+//         //image: req.user.avatar,
+//         description: req.user.description,
+//         avatar: req.user.avatar,
+//         isAuthor: true,
+//         email: req.user.email,
+//         moment:moment
+//       });
+//     })
+//     .catch(err => {
+//       const error = new Error(err);
+//       error.httpStatusCode = 500;
+//       return next(error);
+//     });
+//   }
+exports.getCompanyAccountPage = (req,res,next)=>{
+    if (!req.session.isLoggedIn) {
+      return res.redirect("/login");
+    }
+    let message = req.flash('error');
+    if(message.length>0){
+      message = message[0];
+    }
+    else{
+      message = null;
+    }
+    return res.render("editCompanyAccount.ejs",{
+      errorMessage:message,
+      email:req.user.email,
+      user:req.user,
+      createTime:moment(req.user.created_time).format('LL')
+    });
+  }

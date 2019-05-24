@@ -99,7 +99,7 @@
  
     <form class="form-inline" action="/action_page.php" style="position: absolute; right: 0;top:25px;">
       
-      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/personal'><img src="/<%=avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
+      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/personal'><img src="<%=avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
 
       <a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:30px;" ></a>
     </form>
@@ -110,8 +110,8 @@
   <div class="p-5 row ">
     <div class="col-sm-3" style="background-color:bg-light;">
       <div >
-        <a class="nav-link text-dark" href="#"><img src="/<%=avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
-        <p style="text-align: center;"><b>Shawn Mendes</b></p>
+        <a class="nav-link text-dark" href="#"><img src="<%=avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
+        <p style="text-align: center;"><b><%=user.username%></b></p>
         <p style="text-align: center;">Joined: <%=createTime%> </p>
           <div class="vertical-menu p-2 " style="background-color: bg-light;  margin: auto;">
           <a href="#" class="active" style="text-align: center;"><b>Setting</b></a>
@@ -130,7 +130,7 @@
           <h5><b>Profile picture</b></h5>
           <div class="row" style="padding: 10px;">
               <div class="col-sm-3">
-                <img src="/<%=avatar%>" class=" rounded-circle " alt="Cinque Terre" width="60" height="60">
+                <img src="<%=avatar%>" class=" rounded-circle " alt="Cinque Terre" width="60" height="60">
               </div>
               <div class="col-sm-3" >
                 <form action="/updatedAvatar" method = "POST" enctype="multipart/form-data">

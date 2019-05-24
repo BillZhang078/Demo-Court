@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  
-   <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" type="text/css" href="css/personalpage.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <title> Jobs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/personalpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
-
 </head>
+
+  
+
 
 <style>
 * {
@@ -24,11 +32,7 @@ body {
 }
 
 /* Float four columns side by side */
-.column {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
-}
+
 
 /* Remove extra left and right margins, due to padding */
 .row {margin: 0 -5px;}
@@ -38,15 +42,6 @@ body {
   content: "";
   display: table;
   clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
 }
 
 /* Style the counter cards */
@@ -65,29 +60,59 @@ a.custom-card:hover {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark "  >
-  <div class ="row">
-    <div class="col-md-4" >
-      <a  href="/" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
-    </div>
-    <div class="col-md-8" >
+<nav class="navbar navbar-expand-sm navbar-dark row" >
+      <!-- Brand/logo -->
+      <!-- Links -->
+      <div class="col-md-3">
+        <ul class="navbar-nav" >
+          <a  href="/" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
+        </ul>
+      </div>
+      <div class="col-md-7" >
         <form class="example"  style="margin:auto;max-width:400px" action="/jobSearchResults" method = "GET">
           <input type="text" placeholder="Search.." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
+      </div>
+      <div class="col-md-2" >
+        <ul class="navbar-nav" >
+          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="Notification" 
+    data-content="
+
+    <div class ='row'>
+      <div class = 'col-md-3'>
+      <a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a></div>
+      <div class ='col-md-9'>
+      <a href='playvideo.html' style ='color:black'>10 internet of things </a>
+      </div>
     </div>
-  </div>
-</nav>
 
+    <div><a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a>
+    <a href='playvideo.html' style ='color:black'>10 internet of things</a></div>
+    ">
+        
+         <%if(user.type === "Sign up as employee member"){%>
+     <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
 
-<div class="row" stype="padding-top: 20px;">
+        <%}else{%>
+                <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+
+        <%}%>
+   
+        </ul>
+    </div>
+  </nav>
+<div class="row" style="padding-top: 20px; width: 100%; padding-bottom: 20px;">
 <%if(jobs.length > 0){%>
 <%jobs.forEach(p=>{%>
+<div class="col-md-3">
 <a href="/job/<%=p._id%>" class="custom-card">
-  <div class="column">
+
     <div class="card">
       <div style="height:80px;">
-        <img src="/<%=p.company.avatar%>" alt="logo" style="width: 70px; float: left;" >
+        <img src="/<%=p.User.avatar%>" alt="logo" style="width: 70px; float: left;" >
       </div>
       <div>
         <h5><%=p.title%></h5>
@@ -133,7 +158,6 @@ a.custom-card:hover {
             </div>
 
   </div>
-
 <div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
 </body>
 </html>

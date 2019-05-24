@@ -134,7 +134,13 @@ body, html {
           
           <%if(LoggedIn){%>
         <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign out |</h5></a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="/getJobs/1"><h5>Job List |</h5></a></li>
+        <%if(type === "Sign up as employee member"){%>
         <li class="nav-item"><a class="nav-link text-dark" href="/personal"><h5>Personal Page</h5></a></li>
+        <%}else{%>
+        <li class="nav-item"><a class="nav-link text-dark" href="/companyPage"><h5>Company Page</h5></a></li>
+
+        <%}%>
         <%}else{%>
         <li class="nav-item"><a class="nav-link text-dark" href="/login"><h5>Sign in </h5></a></li>
         <%}%>
@@ -151,8 +157,15 @@ body, html {
       <div class="col-md-2" >
         <ul class="navbar-nav" >
          <%if(LoggedIn){%>
-          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+         <%if(type === "Sign up as employee member"){%>
+          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+
           <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+          <%}else{%>
+           <a href="/companyPage" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+
+          <a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+           <%}%>
           <%}%>
         </ul>
     </div>

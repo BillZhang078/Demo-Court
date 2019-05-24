@@ -88,7 +88,7 @@ ul#menu li {
       </div>
       
       <div> 
-        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
+        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
         <div class="row">
           <div class="col-md-1" >
           </div>
@@ -185,6 +185,7 @@ ul#menu li {
   </div>
   
 <script>
+
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
 });

@@ -37,7 +37,7 @@ const jobSchema = new Schema({
         type:String,
         required:true
       },
-    company:{
+    User:{
         name:{
             type:String,
             required:true
@@ -46,7 +46,7 @@ const jobSchema = new Schema({
             type:String,
             required:true
         },
-        companyId:{
+        userId:{
             type:Schema.Types.ObjectId,
             required:true,
             ref:'User'

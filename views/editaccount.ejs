@@ -48,7 +48,7 @@
     
     <form class="form-inline" action="/action_page.php" style="position: absolute; right: 0;top:25px;">
    
-      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/personal'><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
+      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/personal'><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
 
       <a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:30px;" ></a>
     </form>
@@ -59,10 +59,10 @@
   <div class="p-5 row ">
     <div class="col-sm-3" style="background-color:bg-light;">
       <div>
-        <a class="nav-link text-dark" href="#"><img src="images/visitor2.jpeg" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
-        <p style="text-align: center;"><b>Shawn Mendes</b></p>
-        <p style="text-align: center;">Joined: April 4, 2019</p>
-        <p style="text-align: center;">User ID: 96999582</p>
+        <a class="nav-link text-dark" href="#"><img src="<%=user.avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
+        <p style="text-align: center;"><b><%=user.username%></b></p>
+        <p style="text-align: center;"><%=createTime%></p>
+       
          <div class="vertical-menu p-2 " style="background-color: bg-light;  margin: auto;">
         <a href="#" class="active" style="text-align: center;"><b>Setting</b></a>
           <a href="/editAccount" style="text-align: center;">Account</a>
@@ -80,10 +80,12 @@
           <label for="comment">Name</label>
           <p style="color: grey ">Change your name here</p>
           <form action = '/EditUserName' method = 'POST'>
-          <textarea class="form-control" rows="1" id="comment" name="newUserName" placeholder="Shawn Mendes"></textarea>
-          </form>
+          <textarea class="form-control" rows="1" id="comment" name="newUserName" placeholder="<%=user.username%>"></textarea>
           <br/>
           <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+          <br/>
+   
           <p class="p-2"></p>
           <label for="comment">Email address</label>
           <p style="color: grey ">Use this to log in to your account and to receive email notifications and updates from us.</p>

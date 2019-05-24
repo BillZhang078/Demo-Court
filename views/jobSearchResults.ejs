@@ -65,19 +65,52 @@ a.custom-card:hover {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark "  >
-  <div class ="row">
-    <div class="col-md-4" >
-      <a  href="/" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
-    </div>
-    <div class="col-md-8" >
-        <form class="example"  style="margin:auto;max-width:400px" action="/action_page.php">
+
+<nav class="navbar navbar-expand-sm navbar-dark row" >
+      <!-- Brand/logo -->
+      <!-- Links -->
+      <div class="col-md-3">
+        <ul class="navbar-nav" >
+          <a  href="/" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
+        </ul>
+      </div>
+      <div class="col-md-7" >
+        <form class="example"  style="margin:auto;max-width:400px" action="/jobSearchResults" method = "GET">
           <input type="text" placeholder="Search.." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
+      </div>
+      <div class="col-md-2" >
+        <ul class="navbar-nav" >
+          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="Notification" 
+    data-content="
+
+    <div class ='row'>
+      <div class = 'col-md-3'>
+      <a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a></div>
+      <div class ='col-md-9'>
+      <a href='playvideo.html' style ='color:black'>10 internet of things </a>
+      </div>
     </div>
-  </div>
-</nav>
+
+    <div><a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a>
+    <a href='playvideo.html' style ='color:black'>10 internet of things</a></div>
+    ">
+
+    
+          <%if(user.type === "Sign up as employee member"){%>
+     <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+
+        <%}else{%>
+                <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+
+        <%}%>
+   
+        </ul>
+    </div>
+  </nav>
 
 
 <div class="row" stype="padding-top: 20px;">
@@ -87,7 +120,7 @@ a.custom-card:hover {
   <div class="column">
     <div class="card">
       <div style="height:80px;">
-        <img src="/<%=p.company.avatar%>" alt="logo" style="width: 70px; float: left;" >
+        <img src="/<%=p.User.avatar%>" alt="logo" style="width: 70px; float: left;" >
       </div>
       <div>
         <h5><%=p.title%></h5>
