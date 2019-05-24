@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Manage jobs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href ="css/personalpage.css">
+  <link rel="stylesheet" type="text/css" href ="css/edit.css">
+  <style type="text/css">
+  
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #ffffff;
+}
+.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  background-color: #ffffff;
+  text-decoration-color: black;
+}
+
+custom-card,
+custom-card:hover {
+  color: inherit;
+}
+
+
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="margin-bottom: 20px;  ">
+    <!-- Brand/logo -->
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <a class="navbar-brand " href="/">
+        <img src="images/logo3.png" alt="logo" style="width: 70px;"></a>
+        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
+          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href='/postJob'><img src="images/upload.png" alt="logo" style="width:30px;" ></a>
+        </form>
+    </ul>
+  </nav>
+
+  <div class="card" style="padding-left: 15px;">
+      <img src="images/d1.jpeg" alt="banner" style="height: 80px;" >
+      <a href="#"><img src="<%=user.avatar%>" alt="logo" style="width: 70px; margin-left: -850px; margin-top: -35px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" ></a>
+      </br>
+      <div class="row">
+        <div class="col-md-6" style="padding-right:30px;">
+          <h4 style=" text-align: left;"><%=user.username%></h4>
+          <p style=" text-align: left;"><b></b> <%=user.location%></p>
+        </div>
+        <div class="col-md-6" style="text-align: left;">
+        </br>
+          <p><b>Website: </b> &nbsp; <%=user.website%></p>
+          <p><b>Email: </b><%=user.email%></b></p>
+        </div>
+      </div>  
+  </div>
+
+
+  <div class="row" style="padding-top: 20px;padding-left: 20px;padding-right: 20px;">
+  <%products.forEach(p=>{%>
+         <div class="col-md-4">
+      <div  class="custom-card" >
+        <div class="card">
+          <div style="height:80px;">
+            <img src="<%=user.avatar%>" alt="logo" style="width: 70px; float: left;" >
+          </div>
+          <div>
+            <h5><%=p.jobId.title%></h5>
+            <p style="font-size: 12px;"><%=p.jobId.location%></p>
+            <p style="font-size: 12px; color: grey;"><%=moment(p.jobId.created_time).fromNow()%></p>
+          </div>
+          <ul style="float: center;">
+             <a href='/job/<%=p.jobId._id%>' >Review</a>&nbsp;
+            <a href="/editJob/<%=p.jobId._id%>" >Edit</a>&nbsp;
+            <a href="/deletejob/<%=p.jobId._id%>" >Delete</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <%})%>
+    
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center;">Are you sure to delete this job?</h4>
+        </div>
+        <div class="modal-footer">
+          <a data-dismiss="modal">Delete &nbsp;&nbsp;&nbsp;</a>
+          <a data-dismiss="modal">Cancel &nbsp;&nbsp;&nbsp;</a>
+        </div>
+      </div> 
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+}); 
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+<script>
+        var buttonChange = document.getElementById('');
+        buttonChange.addEventListener('click', function () {
+            if(buttonChange.innerText === 'Like') {
+                buttonChange.innerText = 'Liked';
+            }
+            else {
+                buttonChange.innerText = 'Like';
+            }
+        })
+</script>
+</body>
+</html>
+
+
+  

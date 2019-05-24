@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Edit account</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/edit.css">
+  <link rel="stylesheet" type="text/css" href ="css/signin.css">
+  <style>
+  .user-message{
+  margin:auto;
+  width:90%;
+  border:1px, solid,#4771fa;
+  padding: 1rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+
+}
+
+.user-message--error{
+  border-color: red;
+  background: rgb(175, 86, 86)
+}
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark" style="margin-bottom: 0">
+  <!-- Brand/logo -->
+ 
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+      <a class="navbar-brand " href="/">
+        <img src="images/logo3.png" alt="logo" style="width: 70px;"></a>
+    
+    <form class="form-inline" action="/action_page.php" style="position: absolute; right: 0;top:25px;">
+   
+      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/companyPage'><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
+
+      <a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:30px;" ></a>
+    </form>
+
+
+  </ul>
+</nav>
+  <div class="p-5 row ">
+    <div class="col-sm-3" style="background-color:bg-light;">
+      <div>
+        <a class="nav-link text-dark" href="#"><img src="<%=user.avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
+        <p style="text-align: center;"><b><%=user.username%></b></p>
+        <p style="text-align: center;"><%=createTime%></p>
+       
+         <div class="vertical-menu p-2 " style="background-color: bg-light;  margin: auto;">
+        <a href="#" class="active" style="text-align: center;"><b>Setting</b></a>
+          <a href="/companyAccount" style="text-align: center;">Account</a>
+          <a href="/companyProfile" style="text-align: center;"><b>Profile</b></a>
+          <!-- <a href="/resetPage" style="text-align: center;">Reset Password</a> -->
+      </div>
+      </div>
+      
+    </div>
+
+    <div class="col-sm-9 bg-light" style="background-color:lavenderblush;">
+      <div class="col-sm-10 center">
+        <h4><b>Account</b></h4>
+        <div>
+          <label for="comment">Name</label>
+          <p style="color: grey ">Change your name here</p>
+          <form action = '/EditUserName' method = 'POST'>
+          <textarea class="form-control" rows="1" id="comment" name="newUserName" placeholder="<%=user.username%>"></textarea>
+          <br/>
+          <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+          <br/>
+   
+          <p class="p-2"></p>
+          <label for="comment">Email address</label>
+          <p style="color: grey ">Use this to log in to your account and to receive email notifications and updates from us.</p>
+          <p><%=email%><a href="#" data-toggle="modal" data-target="#myModal"> &nbsp; Edit</a></p>
+          <% if(errorMessage){%>
+            <div class="user-message use-message--error"><%=errorMessage%></div>
+            <%}%>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog" >
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header" style=" text-align: center;">
+                  
+                  <h4 class="modal-title" >Edit email</h4>
+                </div>
+                <form action = '/EditEmail' method = "POST">
+                <div class="modal-body"> 
+                    <input type="text" style="width: 80%; margin-bottom:15px;" id="fname" name="newEmail" placeholder="Email address">
+                    <input type="text" style="width: 80%; margin-bottom:15px;" id="fname" name="confirmEmail" placeholder="Confirm your email address">
+                    <input type="text" style="width: 80%; margin-bottom:15px;" id="fname" name="password" placeholder=" Enter your password to confirm:">
+                </div>
+                <div class="modal-footer">
+                  <a data-dismiss="modal">Cancel &nbsp;&nbsp;&nbsp;</a>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" type = 'submit'>Apply</button>
+                </div>
+              </div> 
+            </div>
+          </div>
+
+          <p class="p-2"></p>
+          <p class="p-2"></p>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <p class="p-2"></p>
+        </div>
+      </div>
+    </div>
+ </from>
+  </div>
+  <!--End of row-->
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+});
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>

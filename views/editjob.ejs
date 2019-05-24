@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Manage jobs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href ="/css/personalpage.css">
+  <link rel="stylesheet" type="text/css" href ="/css/edit.css">
+</head>
+<style type="text/css">
+  textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid #f1f1f1;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-size: 16px;
+  resize: none;
+}
+</style>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="margin-bottom: 20px;  ">
+    <!-- Brand/logo -->
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <a class="navbar-brand " href="/">
+        <img src="/images/logo3.png" alt="logo" style="width: 70px;"></a>
+        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
+        <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+        </form>
+    </ul>
+  </nav>
+ 
+
+  <div class="card" style="padding-left: 15px;">
+      <img src="/images/d1.jpeg" alt="banner" style="height: 80px; " >
+      <a href="#"><img src="/images/c10.png" alt="logo" style="width: 70px; margin-left: -850px; margin-top: -35px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" ></a>
+      </br>
+      <div class="row">
+        <div class="col-md-6" style="padding-right:30px;">
+          <h4 style=" text-align: left;">Vodafone</h4>
+          <p style=" text-align: left;"><b></b> Sydney, Australia</p>
+        </div>
+        <div class="col-md-6" style="text-align: left;">
+        </br>
+          <p><b>Website: </b> &nbsp; https://www.vodafone.com.au/</p>
+          <p><b>Email: </b>support@vodafone.com</b></p>
+        </div>
+      </div>  
+  </div>
+
+
+  <div class="row" style="padding-top: 20px;">
+    <div style=" width: 80%; margin: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+      <p style="padding-top: 10px;"><b>Detailed Information</b></p></br>
+      <div class ="row" style=" padding: 16px; ">
+        <div class="col-md-5" >
+          <p><b>Position:</b></p>
+          </br><p><b>Location:</b></p>
+          </br><p><b>Job Function:</b></p>
+          </br><p><b>Employment Type:</b></p>
+        </div>
+        <div class="col-md-5">
+        <p><%=job.title%></p>
+        </br><p><%=job.location%></p>
+        </br><p><%=job.category%></p>
+        </br><p><%=job.workType%></p>
+        </div>
+        <div class="col-md-2">
+          <a href="#" data-toggle="modal" data-target="#myModal" id ="position" name = "/editTitle/<%=job._id%>"><img src="/images/edit1.png" style="width: 50px;"> </a>
+          </br></br><a href="#" data-toggle="modal" data-target="#myModal" id = "location" name = "/editLocation/<%=job._id%>"><img src="/images/edit1.png" style="width: 50px;"></a>
+          </br></br><a href="#" data-toggle="modal" data-target="#myModal" id = "category" name = "/editCategory/<%=job._id%>"><img src="/images/edit1.png" style="width: 50px;"> </a>
+          </br></br><a href="#" data-toggle="modal" data-target="#myModal" id = "workType" name = "/editWorkType/<%=job._id%>"><img src="/images/edit1.png" style="width: 50px;"> </a>
+        </div>
+      </div> 
+   
+    <div class="col-md-2"><b>Job description:</b></div>
+    <div class="col-md-10" style="padding-bottom: 20px;">
+      <form action = "/editDescription/<%=job._id%>" method = "POST">
+        <textarea name = "content"><%=job.description%></textarea>
+        <button style="float: right; " onclick="myFunction()" type = "submit">Change</button>
+      </form>
+  
+    </div>
+
+    <div class="col-md-2"><b>Requirements:</b></div>
+    <div class="col-md-10" style="padding-bottom: 50px;">
+     <form action = "/editRequirement/<%=job._id%>" method = "POST">
+        <textarea name = "content"><%=job.requirement%></textarea>
+        <button style="float: right;" onclick="myFunction()" type = "submit">Change</button>
+      </form>
+      
+    </div>
+
+  </div>
+
+  
+
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center;">Edit your information here</h4>
+        </div>
+        <form action = ""  id = 'confirm' method = "POST">
+        <div class="modal-body">
+          <input type="text" name="content" placeholder="Enter .." style="width: 80%; margin: auto;"></input>
+        </div>
+        <div class="modal-footer">
+          <button  type = "submit">Confirm &nbsp;&nbsp;&nbsp;</button>
+          <button data-dismiss="modal">Cancel &nbsp;&nbsp;&nbsp;</button>
+        </div>
+        </form>
+      </div> 
+    </div>
+  </div>
+ <div style="height: 20px; "></div>
+
+<script>
+const value = document.getElementById("position").name;
+console.log(value);  
+function modifyText(text) {
+  var t2 = document.getElementById("confirm");
+  t2.action = text; 
+console.log(t2.action);  
+}
+ 
+// 为table对象添加事件监听器
+var el = document.getElementById("position");
+el.addEventListener("click", function(){modifyText(value)}, false);
+// Location
+const value1 = document.getElementById("location").name;
+console.log(value1);  
+function modifyLocation(text) {
+  var t2 = document.getElementById("confirm");
+  t2.action = text; 
+console.log(t2.action);  
+}
+ 
+// 为table对象添加事件监听器
+var el1 = document.getElementById("location");
+el1.addEventListener("click", function(){modifyLocation(value1)}, false);
+
+
+const value2 = document.getElementById("category").name;
+console.log(value2);  
+function modifyCategory(text) {
+  var t2 = document.getElementById("confirm");
+  t2.action = text; 
+console.log(t2.action);  
+}
+ 
+// 为table对象添加事件监听器
+var el2 = document.getElementById("category");
+el2.addEventListener("click", function(){modifyCategory(value2)}, false);
+
+const value3 = document.getElementById("workType").name;
+console.log(value3);  
+function modifyWorkType(text) {
+  var t2 = document.getElementById("confirm");
+  t2.action = text; 
+console.log(t2.action);  
+}
+ 
+// 为table对象添加事件监听器
+var el3 = document.getElementById("workType");
+el3.addEventListener("click", function(){modifyWorkType(value3)}, false);
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({html:true});   
+});
+function myFunction() {
+  alert("Successful change!");
+}
+
+</script>
+</body>
+</html>
+
+
+  
