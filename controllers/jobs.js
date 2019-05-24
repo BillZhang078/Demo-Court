@@ -148,7 +148,7 @@ exports.searchJobs = (req, res, next) => {
     console.log(prodId);
     Job.findById(prodId)
     .then(job=>{
-        res.render('editJob',{
+        res.render('editjob',{
            job:job,
            user:req.user
         })
