@@ -157,7 +157,7 @@ body, html {
       <div class="col-md-2" >
         <ul class="navbar-nav" >
          <%if(LoggedIn){%>
-         <%if(type === "Sign up as employee member"){%>
+         <%if(user.type == "Sign up as employee member"){%>
           <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
 
           <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
