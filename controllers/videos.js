@@ -33,6 +33,7 @@ exports.getPersonalPage = (req, res, next) => {
       res.render("personalPage", {
         username: req.user.username,
         user:req.user,
+        user1:'',
         products: products,
         number: products.length,
         resume: req.user.resume,

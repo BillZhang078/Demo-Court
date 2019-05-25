@@ -109,7 +109,8 @@ exports.searchJobs = (req, res, next) => {
                 res.render("jobSearchResults",{
                     jobs:jobs,
                     current: page,
-                    pages:Math.ceil(count/perPage)
+                    pages:Math.ceil(count/perPage),
+                    user:req.user
                 })
             })
            .catch(err=>{

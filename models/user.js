@@ -37,7 +37,7 @@ var userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: '/public/img/avatar-default.png'
+    default: 'public/img/avatar-default.png'
   },
   resetToken:String,
   university:{
