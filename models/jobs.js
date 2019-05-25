@@ -38,12 +38,12 @@ const jobSchema = new Schema({
         required:true
       },
       username:{
-        type:String,
-        required:true
+        type:String
+        
     },
     userDescription:{
-        type:String,
-        required:true
+        type:String
+      
     },
     User:{
         name:{
