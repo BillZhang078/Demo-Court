@@ -459,17 +459,20 @@ exports.getRankedVideos1 = (req, res, next) => {
       let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
       Video.find({ title: regex })
         .sort({ starNumber: -1 })
+        .limit(8)
         .then(videos2 => {
           deepLearning = videos2;
           regex = new RegExp(escapeRegex("vision"), "gi");
           Video.find({ title: regex })
             .sort({ starNumber: -1 })
+            .limit(8)
             .then(videos3 => {
               computerVision = videos3;
               regex = new RegExp(escapeRegex("robot"), "gi");
               //console.log(rankedVideo);
               Video.find({ title: regex })
                 .sort({ starNumber: -1 })
+                .limit(8)
                 .then(videos4 => {
                   robotic = videos4;
                   console.log(rankedVideo.length);
@@ -540,17 +543,20 @@ exports.getRankedVideos = (req, res, next) => {
       let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
       Video.find({ title: regex })
         .sort({ starNumber: -1 })
+        .limit(8)
         .then(videos2 => {
           deepLearning = videos2;
           regex = new RegExp(escapeRegex("vision"), "gi");
           Video.find({ title: regex })
             .sort({ starNumber: -1 })
+            .limit(8)
             .then(videos3 => {
               computerVision = videos3;
               regex = new RegExp(escapeRegex("robot"), "gi");
               //console.log(rankedVideo);
               Video.find({ title: regex })
                 .sort({ starNumber: -1 })
+                .limit(8)
                 .then(videos4 => {
                   robotic = videos4;
                   console.log(rankedVideo.length);

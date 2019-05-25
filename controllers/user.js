@@ -92,7 +92,7 @@ exports.singUp = (req,res,next)=>{
             description:'',
             university:'',
             major:'',
-            avatar:'/images/defaultAvatar.png',
+            avatar:'images/defaultAvatar.png',
             location:'',
             type:type,
             videoCollection:{ videos:[{quantity:0}] }

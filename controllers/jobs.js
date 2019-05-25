@@ -45,7 +45,7 @@ exports.getPostJob = (req,res,next)=>{
 }
 
 exports.getAllJobs = (req,res,next)=>{
-    const perPage = 24; //max vidoes on one page
+    const perPage = 8; //max vidoes on one page
   const page = req.params.pageNumber || 1;
     Job.find()
     .skip(perPage * page - perPage)
