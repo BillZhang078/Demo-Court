@@ -60,7 +60,7 @@ a.custom-card:hover {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-dark row" style="margin-bottom: 0">
+<nav class="navbar navbar-expand-sm  navbar-dark row" style="margin-bottom: 0">
    <div class ="col-md-3">
     <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    </div>
@@ -97,13 +97,13 @@ a.custom-card:hover {
   </nav>
 
 
-<div class="row" style="padding-top: 20px; width: 100%; padding-bottom: 20px;">
+<div class="row" style="padding-top: 20px; width: 100%; padding-bottom: 20px; ">
 <%if(jobs.length > 0){%>
 <%jobs.forEach(p=>{%>
-<div class="col-md-3">
+<div class="col-md-3" style="padding-bottom: 20px;">
 <a href="/job/<%=p._id%>" class="custom-card">
 
-    <div class="card">
+    <div class="card" style="height: 200px;">
       <div style="height:80px;">
         <img src="/<%=p.User.avatar%>" alt="logo" style="width: 70px; float: left;" >
       </div>
@@ -149,7 +149,7 @@ a.custom-card:hover {
             <% } %>
            
             </div>
-
+    
   </div>
 <div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
 </body>
