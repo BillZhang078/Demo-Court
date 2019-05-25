@@ -87,6 +87,14 @@ const rankedVideoSchema = new Schema({
         type:Number,
         default:0
     },
+    username:{
+        type:String,
+        required:true
+    },
+    userDescription:{
+        type:String,
+        required:true
+    },
     user:{
         username:{
             type:String,

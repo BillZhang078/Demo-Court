@@ -316,8 +316,8 @@ exports.getAuthorPgae = (req,res,next)=>{
         email:user.email,
         isAuthor :false,
         resume:user.resume,
-        user:user,
-        user1:req.user,
+        user1:user,
+        user:req.user,
         moment:moment
       });
     })

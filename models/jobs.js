@@ -37,6 +37,14 @@ const jobSchema = new Schema({
         type:String,
         required:true
       },
+      username:{
+        type:String,
+        required:true
+    },
+    userDescription:{
+        type:String,
+        required:true
+    },
     User:{
         name:{
             type:String,

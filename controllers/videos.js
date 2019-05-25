@@ -219,7 +219,9 @@ exports.uploadVideo = (req, res, next) => {
     starNumbers: starNumbers,
     clickRate: clickRate,
     VideoUrl: url,
-    user: user
+    user: user,
+    userDescription: req.user.description,
+    username:req.user.name
   });
   video
     .save()
@@ -606,14 +608,57 @@ exports.getRankedVideos = (req, res, next) => {
 
 exports.searchVideos = (req, res, next) => {
   const regex = new RegExp(escapeRegex(req.query.search), "gi");
-  Video.find({ $or: [{ title: regex }, { description: regex }] })
+  Video.find({ $or: [{ title: regex }, { description: regex },{username:regex},{userDescription:regex}] })
+  
     .then(videos => {
       console.log(videos.length);
+      
       res.render("searchResults", {
         videos: videos,
         moment: moment
       });
-    })
+    
+      // else if(videos.length == 0){
+      //   //let videoArray = new Array();
+      //   User.find({username:regex} )
+
+      //   .then(users=>{
+      //     //console.log(users);
+      //     global.videoArray = new Array();
+      //       users.forEach(u=>{
+      //         //console.log(u);
+      //         u.populate("cart.items.productId")
+      //         .execPopulate()
+      //         .then(user => {
+      //           //console.log(user);
+      //           const products = user.cart.items;
+      //           //console.log(products.length);
+      //           products.forEach(element => {
+      //             if(element.productId!=null){
+      //             videoArray.push(element.productId);
+      //             }
+      //           })  
+      //           return res.render("searchResults", {
+      //             videos: videoArray,
+      //             moment: moment
+      //           });
+      //         })
+              
+      //         .catch(err=>{
+      //           console.log(err);
+      //         })
+             
+           // })
+            // res.render("searchResults", {
+            //   videos: videoArray,
+            //   moment: moment
+            // });
+            
+        })
+        
+      
+
+    
     .catch(err => {
       const error = new Error(err);
       error.httpStatusCode = 500;

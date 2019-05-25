@@ -100,7 +100,7 @@ exports.searchJobs = (req, res, next) => {
     const regex = new RegExp(escapeRegex(req.query.search), "gi");
       const perPage = 24; //max vidoes on one page
       const page = req.params.pageNumber || 1;
-        Job.find( { $or: [ { title: regex }, { description:regex} ] } )
+        Job.find( { $or: [ { title: regex }, { description:regex},{username:regex},{userDescription:regex} ] } )
         .skip(perPage * page - perPage)
         .sort({_id:1})
         .then(jobs=>{
