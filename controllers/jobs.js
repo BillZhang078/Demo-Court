@@ -29,7 +29,9 @@ exports.getPostJob = (req,res,next)=>{
         location:location,
         workType:workType,
         User:company,
-        requirement:requirement
+        requirement:requirement,
+        username:req.user.username,
+        userDescription:req.user.description
         
     })
     newJob.save()
