@@ -120,13 +120,19 @@
         <%}%>
         <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign Out |</h5></a></li>
         <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-          <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/personal' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+      <%if(user1.type === "Sign up as employee member"){%>
+           <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content=""<li> <a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/personal"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link" href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+        <%}else{%>
+            <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/companyPage"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href='/postJob'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+
+        <%}%>
         </form>
     </ul>
   </nav>
   <div style="padding-top: 20px; width: 100%;">
-    <img src="images/banner.jpg" style="width: 100%;" >
+    <img src="/images/banner.jpg" style="width: 100%;" >
     <div>
       <img src="<%=user.avatar%>"  class=" center rounded-circle" style=" margin-top: -100px; z-index: 0" alt="Cinque Terre" width="200" height="200" >
     </div>

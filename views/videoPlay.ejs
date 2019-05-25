@@ -88,7 +88,7 @@ ul#menu li {
       </div>
       
       <div> 
-        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
+        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="/<%=video.user.userId.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
         <div class="row">
           <div class="col-md-1" >
           </div>
@@ -101,7 +101,7 @@ ul#menu li {
                     <div class="comment-form">
                         <div class="left-side">
                             <div class="row">
-                                <textarea placeholder="Sharing your ideas with people who is wacthing this video" required id="new_comment_text" rows="10" cols = "33" name = "comment"></textarea>
+                                <textarea placeholder="Sharing your ideas with people who is wacthing this video" required id="new_comment_text" rows="20" cols = "50" name = "comment"></textarea>
                                 <input id= "postId" value = "<%=video._id%>" hidden>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ ul#menu li {
                             </div>
                             <div class="comment-info">
                                 <div class="row">
-                                    <div class="name"><%= user.username%></div>
+                                    <div class="name"><%= video.user.userId.username%></div>
                                     
                                 </div>
                                 <div class="row">
