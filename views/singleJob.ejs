@@ -99,7 +99,23 @@ a.custom-card:hover {
   </div>
 
   <div class="col-md-3" > 
-  <h4>Jobs recently</h4>
+  <h4>More jobs</h4>
+  <!-- <%jobs.forEach(p=>{%>
+    <div class="row" style="padding-bottom: 15px;">
+      <a href="/job/<%=p.jobId._id%>" class="custom-card">
+        <div class="col-md-3">
+            <div style="height:60px;">
+              <img src="/<%=p.jobId.User.avatar%>" alt="logo" style="width: 60px; float: left;" >
+            </div>
+        </div>
+        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+              <h5><%=p.jobId.title%></h5>
+              <p style="font-size: 10px;"><%=p.jobId.location%></p>
+              <p style="font-size: 10px; color: grey;"><%=moment(p.jobId.created_time).fromNow()%></p>
+        </div>
+      </a>
+    </div>
+  <%})%> -->
     <div class="row" style="padding-bottom: 15px;">
       <a href="main.html" class="custom-card">
         <div class="col-md-3">
@@ -119,7 +135,7 @@ a.custom-card:hover {
       <a href="main.html" class="custom-card">
         <div class="col-md-3">
             <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
+              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;"/ >
             </div>
         </div>
         <div class="col-md-9" style="border-bottom: 1px solid grey;">

@@ -45,10 +45,11 @@ exports.getPostJob = (req,res,next)=>{
 }
 
 exports.getAllJobs = (req,res,next)=>{
-    const perPage = 8; //max vidoes on one page
+    const perPage = 12; //max vidoes on one page
   const page = req.params.pageNumber || 1;
-    Job.find()
+    Job.find({})
     .skip(perPage * page - perPage)
+    .limit(perPage)
     .sort({_id:1})
     .then(jobs=>{
         Job.countDocuments()
@@ -74,19 +75,23 @@ exports.getSingleJob = (req,res,next)=>{
     Job.findById(jobId)
     .then(job=>{
         regex = new RegExp(escapeRegex(job.title), "gi");
-        Job.find({title:regex})
-        .limit(8)
-        .then(jobs=>{
-            res.render("singleJob",{
-                job:job,
-                jobs:jobs,
-                user:req.user,
-                moment:moment
-            })
-        }) 
-        .catch(err=>{
-            console.log(err);
-        })
+        const userId = job.User.userId;
+      console.log(userId);
+      let urlArray = new Array();
+      User.findById(userId).then(user => {
+        user
+          .populate("jobs.items.jobId")
+          .execPopulate()
+          .then(user=>{
+              const jobs = user.jobs.items;
+              res.render('singlejob',{
+                  job:job,
+                  jobs:jobs,
+                  user:req.user,
+                  moment:moment
+              })
+          })
+      })
     })
     .catch(err=>{
         console.log(err);
