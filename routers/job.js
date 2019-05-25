@@ -16,6 +16,7 @@ const EditCategory = require('../controllers/jobs').EditCategory
 const EditWorkType = require('../controllers/jobs').EditWorkType
 const EditDescription = require('../controllers/jobs').EditDescription
 const EditRequirement = require('../controllers/jobs').EditRequirement
+const EditWebsite = require('../controllers/jobs').EditWebsite
 router.post('/postjob',getPostJob);
 router.get('/getJobs/:pageNumber',getJobList);
 router.get('/job/:jobId',getSingleJob);

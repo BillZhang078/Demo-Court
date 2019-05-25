@@ -23,6 +23,7 @@ const editEmail =  require('../controllers/user').EditEmail;
 const postReset = require('../controllers/user').postReset;
 const {check,body} = require('express-validator/check');
 const EditResume = require('../controllers/user').EditResume;
+const EditWebsite = require('../controllers/user').EditWebsite;
 
 const router = express.Router();
 const multer  = require('multer');
@@ -63,6 +64,7 @@ router.post('/login',logIn);
 router.get('/logout',signOut);
 
 router.get('/editProfile',getEditPage);
+router.post('/EditCompanyWebsite',EditWebsite);
 
 
 //router.post('/edit-profile',upload.single('avatar'),postEditProfile);

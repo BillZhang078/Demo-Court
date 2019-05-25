@@ -204,6 +204,20 @@ exports.EditAvatar = (req, res, next) => {
       })
       .catch(err => console.log(err));
   };
+  exports.EditWebsite = (req, res, next) => {
+    const prodId = req.user._id;
+    const updatedWebsite = req.body.updatedWebsite;
+    User.findById(prodId)
+      .then(user => {
+        user.website = updatedWebsite;
+        return user.save();
+      })
+      .then(result => {
+        console.log('UPDATED Profile!');
+        res.redirect('/editProfile');
+      })
+      .catch(err => console.log(err));
+  };
 
   exports.EditUniversity = (req, res, next) => {
     const prodId = req.user._id;
