@@ -73,13 +73,13 @@ ul#menu li {
                        <%if(isliked == false){%>
 	                  <div><%= video.visitTimes%> views &nbsp;<a id = "like"><span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes</a>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "likeVideos">Like</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal"> <img src="/images/share1.png" alt="Submit" width="30"></a></div> 
+                      <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "likeVideos">Like</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div> 
                       
                        <%}%>
                        <%if(isliked == true){%>
                     <div ><%= video.visitTimes%> views &nbsp;<span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "unlikeVideos">unlike</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal"> <img src="/images/share1.png" alt="Submit" width="30"></a></div>
+                    <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "unlikeVideos">unlike</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div>
                     
                      <%}%>
                      
@@ -173,7 +173,7 @@ ul#menu li {
          <ul style="margin: auto;">
          	<a href="https://www.facebook.com/sharer.php?title=填上你的标题&u=https://safe-badlands-13183.herokuapp.com//getSingleVideo/<%=video._id%>"  target="_blank"><img src="/images/face.png" width="40"></a>
          	<!-- <a href="https://twitter.com/intent/tweet?text=Hello%20world"><img src="/images/insta.jpeg" width="40"></a> -->
-         	<a href="https://twitter.com/intent/tweet?text=Hello%20world" target="_blank"><img src="/images/twit.png" width="40"></a>
+         	<a href="https://twitter.com/intent/tweet?text= " target="_blank" id= "twitter"><img src="/images/twit.png" width="40"></a>
          </ul>
         </div>
         <div class="modal-footer">
@@ -185,6 +185,18 @@ ul#menu li {
   </div>
   
 <script>
+const value = "https://twitter.com/intent/tweet?text=";
+const currentUrl = value+ window.location.href
+console.log(value);  
+function modifyText(text) {
+  var t2 = document.getElementById("twitter");
+  t2.href = text; 
+console.log(t2.action);  
+}
+ 
+// 为table对象添加事件监听器
+var el = document.getElementById("share");
+el.addEventListener("click", function(){modifyText(currentUrl)}, false);
 
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
