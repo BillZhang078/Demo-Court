@@ -147,7 +147,7 @@ exports.EditAvatar = (req, res, next) => {
     console.log(req.file);
     const prodId = req.user._id;
     const updatedImage = req.file;
-    const updatedImageUrl = updatedImage.path;
+    const updatedImageUrl = encodeURI(updatedImage.path);
     User.findById(prodId)
       .then(user => {
         user.avatar = updatedImageUrl;
@@ -163,7 +163,7 @@ exports.EditAvatar = (req, res, next) => {
     console.log(req.file);
     const prodId = req.user._id;
     const updatedPdf = req.file;
-    const updatedResume = updatedPdf.path;
+    const updatedResume= encodeURI(updatedPdf.path);
     User.findById(prodId)
       .then(user => {
         user.resume = updatedResume;

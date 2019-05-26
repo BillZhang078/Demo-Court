@@ -208,7 +208,8 @@ exports.uploadVideo = (req, res, next) => {
   const Imageurl = req.file;
   const starNumbers = "0";
   const clickRate = "0";
-  const url = Imageurl.path;
+  const url = encodeURI(Imageurl.path);
+  
   const user = {
     username: req.user.username,
     userId: req.user

@@ -100,7 +100,9 @@ exports.getSingleJob = (req,res,next)=>{
 }
 
 exports.getUploadPage = (req,res,next)=>{
-    res.render('postJob');
+    res.render('postJob',{
+        user:req.user
+    });
 }
 
 exports.searchJobs = (req, res, next) => {
