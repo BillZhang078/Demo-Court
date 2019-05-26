@@ -66,51 +66,42 @@ a.custom-card:hover {
 <body>
 
 
-<nav class="navbar navbar-expand-sm navbar-dark row" >
-      <!-- Brand/logo -->
-      <!-- Links -->
-      <div class="col-md-3">
-        <ul class="navbar-nav" >
-          <a  href="/" ><img src="/images/logo3.png" alt="logo" style="width: 70px;" ></a>
-        </ul>
-      </div>
-      <div class="col-md-7" >
-        <form class="example"  style="margin:auto;max-width:400px" action="/jobSearchResults" method = "GET">
-          <input type="text" placeholder="Search.." name="search">
+<nav class="navbar navbar-expand-sm  navbar-dark row" style="margin-bottom: 0">
+   <div class ="col-md-3">
+    <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   </div>
+   <div class ="col-md-7">
+   <form  style="margin:auto;max-width:400px" method = "GET" action = '/jobSearchResults' >
+          <input type="text" placeholder="Search.." name="search" align = "center">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
-      </div>
-      <div class="col-md-2" >
-        <ul class="navbar-nav" >
-          <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="Notification" 
-    data-content="
+   </div>
+   <div class ="col-md-2">
+   </div>
 
-    <div class ='row'>
-      <div class = 'col-md-3'>
-      <a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a></div>
-      <div class ='col-md-9'>
-      <a href='playvideo.html' style ='color:black'>10 internet of things </a>
-      </div>
-    </div>
-
-    <div><a href='playvideo.html' role='button' class='btn popovers nav-link text-dark'><img src='images/visitor2.jpeg' class=' rounded-circle' alt='Cinque Terre' width='30' height='30' ></a>
-    <a href='playvideo.html' style ='color:black'>10 internet of things</a></div>
-    ">
-
+  
+       
+ 
+   
     
-          <%if(user.type === "Sign up as employee member"){%>
-     <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-
+    <ul class="navbar-nav">
+        
+        <!-- <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign Out </h5></a></li> -->
+        
+        <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
+      <%if(user.type == "Sign up as employee member"){%>
+           <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link" href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
         <%}else{%>
-                <a href="company.html" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='company.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+            <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
+          <a class="nav-link " href='/postJob'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
 
         <%}%>
-   
-        </ul>
-    </div>
+        </form>
+         </div> 
+    </ul>
   </nav>
+
 
 
 <div class="row" stype="padding-top: 20px;">
