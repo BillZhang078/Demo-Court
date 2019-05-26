@@ -84,7 +84,7 @@ exports.getSingleJob = (req,res,next)=>{
           .execPopulate()
           .then(user=>{
               const jobs = user.jobs.items;
-              res.render('singlejob',{
+              res.render('singleJob',{
                   job:job,
                   jobs:jobs,
                   user:req.user,
