@@ -1,8 +1,10 @@
 const Job = require('../models/jobs');
 const Company = require('../models/jobs');
+const marked = require('marked')
 const User = require('../models/user');
 var session = require('express-session')
 var ObjectId = require('mongodb').ObjectID;
+
 const moment = require('moment');
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -11,11 +13,11 @@ exports.getPostJob = (req,res,next)=>{
     
     const jobTitle = req.body.jobtitle;
     const category = req.body.category;
-    const discription = req.body.description;
+    //const discription = req.body.description;
     const location = req.body.location;
     const workType = req.body.workType;
     const requirement = req.body.requirement
-  
+    const discription = marked(req.body.description)
     const company = {
         name:req.user.username,
         avatar:req.user.avatar,
@@ -71,6 +73,8 @@ exports.getAllJobs = (req,res,next)=>{
 }
 
 exports.getSingleJob = (req,res,next)=>{
+   
+    
     const jobId = req.params.jobId;
     Job.findById(jobId)
     .then(job=>{
@@ -83,9 +87,11 @@ exports.getSingleJob = (req,res,next)=>{
           .populate("jobs.items.jobId")
           .execPopulate()
           .then(user=>{
+            description = job.description;
               const jobs = user.jobs.items;
               res.render('singleJob',{
                   job:job,
+                description:description,
                   jobs:jobs,
                   user:req.user,
                   moment:moment
