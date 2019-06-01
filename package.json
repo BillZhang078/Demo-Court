@@ -46,6 +46,7 @@
     "nodemailer": "^6.0.0",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^1.18.10",
+    "particlesjs": "^2.2.3",
     "path": "^0.12.7",
     "pusher": "^2.2.0",
     "session": "^0.1.0",
