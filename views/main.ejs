@@ -158,6 +158,18 @@
         <p class="warning">Your browser does not support HTML5 video.</p>
      </video>
 
+     <video  height="370" width="90%" autoplay loop muted="" >
+        <source src="/videos/OmniWheel.mp4">
+        <source src="movie.ogg" type="video/ogg">
+        <p class="warning">Your browser does not support HTML5 video.</p>
+     </video>
+
+     <video  height="370" width="90%" autoplay loop muted="" >
+        <source src="/videos/OmniWheel.mp4">
+        <source src="movie.ogg" type="video/ogg">
+        <p class="warning">Your browser does not support HTML5 video.</p>
+     </video>
+
     </div>
 
   
@@ -168,10 +180,43 @@
       
         </div>
         <div class="col-md-6" >
-          <div ><video  width="350" height="345" src="/videos/OmniWheel.mp4#t=3" ></video>
+          <video  width="350" height="345" src="/videos/OmniWheel.mp4#t=3" ></video>
                   <a href="playvideo.html" style="text-decoration: none; color: black;"><p style="font-size:15px;">Build an HTML 5 online</p></a>
-                  <p style="font-size:15px;">20,305 views | 3 days ago</p>
+       
         </div>
+        <div class="col-md-4" style="padding-top:50px;">
+          <h5 style="font-size: 22px;"><b> Robotics </b></h5>
+          <p style="font-size: 15px;">
+            The word robotics was derived from the word robot, which was introduced to the public by Czech writer Karel Čapek in his play R.U.R.
+          </p>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-md-2" style=" margin: auto;" >
+          <img src="images/n22.png" style="width: 50px; " >
+      
+        </div>
+        <div class="col-md-6" >
+          <video  width="350" height="345" src="/videos/OmniWheel.mp4#t=3" ></video>
+                  <a href="playvideo.html" style="text-decoration: none; color: black;"><p style="font-size:15px;">Build an HTML 5 online</p></a>
+       
+        </div>
+        <div class="col-md-4" style="padding-top:50px;">
+          <h5 style="font-size: 22px;"><b> Robotics </b></h5>
+          <p style="font-size: 15px;">
+            The word robotics was derived from the word robot, which was introduced to the public by Czech writer Karel Čapek in his play R.U.R.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2" style=" margin: auto;" >
+          <img src="images/n3.png" style="width: 50px; " >
+      
+        </div>
+        <div class="col-md-6" >
+          <video  width="350" height="345" src="/videos/OmniWheel.mp4#t=3" ></video>
+                  <a href="playvideo.html" style="text-decoration: none; color: black;"><p style="font-size:15px;">Build an HTML 5 online</p></a>
+       
         </div>
         <div class="col-md-4" style="padding-top:50px;">
           <h5 style="font-size: 22px;"><b> Robotics </b></h5>
@@ -181,18 +226,18 @@
         </div>
       </div>
 
-
-     
-      </div>
       <button style="float: right;">Show more</button>
+      </div>
+    
       </div>
     </div>
 
   </div>
+  
 
 <%if(isRanked == true){%>
 <div class="p-5 container-fluid bg-light">
-  <h2 style="margin-left: 15%">Popular videos</h2>
+  <h2 style="margin-left: 5%">Popular videos</h2>
   
   <div class=" grid-container ">
   <%if (rankedVideoLength>0) {%>
@@ -200,7 +245,7 @@
       
       <div ><a href = "/getSingleVideo/<%= p._id%>">
        <div class="player">
-     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=3 " width = "200",height = "150" > </video>
+     <video class="player__video viewer" src="/<%= p.VideoUrl%>#t=3 " width = "300",height = "250" > </video>
      <div class="player__controls">
        <div class="progress">
         <div class="progress__filled"></div>
@@ -267,7 +312,7 @@
    <!-- This is Deep Learning Video -->
   <%if(isDeep == true){%>
    <div class="p-5 container-fluid bg-light">
-  <h2 style="margin-left: 15%"> Deep Learning</h2>
+  <h2 style="margin-left: 5%"> Deep Learning</h2>
   
   <div class=" grid-container ">
   <%if (deepLearningLength>0) {%>
@@ -341,7 +386,7 @@
            
   <%if(isVision == true){%>
    <div class="p-5 container-fluid bg-light">
-  <h2 style="margin-left: 15%"> Computer Vision </h2>
+  <h2 style="margin-left: 5%"> Computer Vision </h2>
   
   <div class=" grid-container ">
   <%if (computerVisionLength>0) {%>
@@ -418,7 +463,7 @@
   
    <%if(isRobotic == true) {%>
    <div class="p-5 container-fluid bg-light">
-  <h2 style="margin-left: 15%"> Robotic</h2>
+  <h2 style="margin-left: 5%"> Robotic</h2>
   
   <div class=" grid-container ">
   <%if (roboticLength>0) {%>
