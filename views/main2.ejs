@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title> Demo Court</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+<style>
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+.v1{width:88%;margin:auto;}
+.col-md-4{font-size: 20px;}
+</style>
+</head>
+<body>
+
+
+
+<div id="navbar" >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="images/logoc.png" width="150" height="200"   ></a></li>
+    <%if(LoggedIn){%>
+    <li><a href="/getJobs/1" style="color: white;">Jobs</a></li>
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+    <%if(user.type == "Sign up as employee member"){%>
+    <li><a href="/personal" style="color: white;">Personal Page</a></li>
+    <%}else{%>
+    <li><a href="/companyPage" style="color: white;">Company Page</a></li>
+    <%}%>
+    <%}else{%>
+    <li><a href="/login" style="color: white;">Sign in</a></li>
+    <li><a href="/register" style="color: white;">Sign up</a></li>
+    <%}%>
+    <li style="width: 500px; padding-top: 15px; padding-left: 150px;"><form class="example"  style="margin:auto;width:500px" method = "GET" action = "/searchResults">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+      </form></li>
+      <%if(LoggedIn){%>
+         <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <%}else{%>
+       <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       <%}%>
+          <%}%>
+  </ul>
+</div>
+<!--End of navigation-->
+
+<!--Autoplay video-->
+<div class=" bg-dark" style=" width: 100%; margin: auto;">
+    <video   height ="570"width="100%"  loop  controls >
+        <source src="/videos/ad.mp4">
+        <source src="movie.ogg" type="video/ogg">
+        <p class="warning">Your browser does not support HTML5 video.</p>
+   </video> 
+</div>
+
+<!--Testing-->
+<div style="margin: auto;" align = "center"><img src="/images/about1.png"></div>
+
+
+<!--Trending-->
+
+    
+<div class=" bg-dark cs" style=" margin: auto; padding-top: 20px;  font-size: 20px;">
+  <div style="font-family: Times New Roman; text-align: center; color: white;"><h1>Trending</h1></div>
+
+  <div class="row cs" style="padding: 20px;">
+  <%if(isRanked == true){%>
+<%if (rankedVideoLength>0) {%>
+<%rankedVideo.forEach(p=> {%>
+    <div class="col-md-4" >
+    <a href = "/getSingleVideo/<%= p._id%>">
+      <video  width = "400" height="300"  style="margin:auto;"src="/<%= p.VideoUrl%>#t=3 " ></video></a>
+                  <div><a href="/<%= p.VideoUrl%>#t=3 "  style="text-decoration: none; color: white"><p><%=p.title%></p></a>
+                  <p style="color: white;"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p></div>
+    </div>
+    <%})%>
+    <%}%>
+    <%if(isPaginationP == false){%>
+    <div class ="v1"><a href="/Rankedvideos/1" style="color: white; float: right; font-size:20px;">Show more</a></div>
+    <%}%>
+    <%if(isPaginationP == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/Rankedvideos/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/Rankedvideos/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/Rankedvideos/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+
+  </div>
+  <%}%>
+  </div>
+  
+</div>
+
+<!--Our website-->
+
+<div class ="bg-image1" >
+    
+        <video   width="60%"  loop  style="padding:50px; muted = ""; " >
+            <source src="/videos/ad.mp4">
+            <source src="movie.ogg" type="video/ogg">
+            <p class="warning">Your browser does not support HTML5 video.</p>
+        </video> 
+    
+</div>
+
+
+<!--Category-->
+<!--Computer Vision-->
+<%if(isVision == true){%>
+<div class="row cs" style=" margin: auto; padding-top: 50px; color: black;">
+ <div class="col-md-3" style="padding-left:20px;">
+    <h1>Computer Vision</h1>
+    <p style="font-size: 25px;"> Deep learning is part of a broader family of machine learning methods based on artificial neural networks. Learning can be supervised, semi-supervised or unsupervised </p>
+  </div>
+  <div class="col-md-9">
+    <div class="row" >
+    <%if (computerVisionLength>0) {%>
+        <%computerVision.forEach(p=> {%>
+        <div class ="col-md-4"><a href = "/getSingleVideo/<%= p._id%>"><video  width = "320" height="300"  src="/<%= p.VideoUrl%>#t=3 " ></video></a>
+                <a href="playvideo.html" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+                <p ><%=p.visitTimes%>  views | <%=moment(p.created_time).fromNow()%></p>
+        </div>
+        <%})%>
+<%}%>
+    </div>
+    <%if(isPaginationV == false){%>
+    <div> <button style="color: black; float: right; font-size:20px;">Show more</button></div>
+    <%}%>
+    <%if(isPaginationV== true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getComputerVision/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getComputerVision/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getComputerVision/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+
+
+  </div>
+<% } %>
+  </div>
+</div>
+
+
+<!--Deep Learning-->
+<%if(isDeep == true){%>
+<div class="row bg-dark cs" style=" margin: auto; padding-top: 50px; color: white; font-size:20px;">
+  <div class="col-md-9">
+    <div class="row" >
+    <%if (deepLearningLength>0) {%>
+        <%deepLearning.forEach(p=> {%>
+        <div class ="col-md-4"><a href = "/getSingleVideo/<%= p._id%>"><video   width = "320" height="300"  src="/<%= p.VideoUrl%>#t=3 "></video></a>
+                <a href="playvideo.html" style="text-decoration: none; color: white;"><p><%=p.title%></p></a>
+                <p ><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p>
+        </div>
+             <%})%>
+<%}%>
+    </div>
+    <%if(isPaginationD== false){%>
+    <div> <a href="/getDeepLearning/1" style="color: white; float: right;">Show more</a></div>
+    <%}%>
+    <%if(isPaginationD == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getDeepLearning/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getDeepLearning/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getDeepLearning/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+ <%}%>
+ <div class="col-md-3">
+    <h1>Deep Learning</h1>
+    <p style="font-size: 25px;"> Deep learning is part of a broader family of machine learning methods based on artificial neural networks. Learning can be supervised, semi-supervised or unsupervised </p>
+  </div>
+  </div>
+  
+</div>
+
+<!--Robotics-->
+<%if(isRobotic == true) {%>
+<div class="row cs" style=" margin: auto; padding-top: 50px; color: black; font-size:20px;">
+ <div class="col-md-3">
+    <h1>Robotics</h1>
+    <p style="font-size: 25px;"> Deep learning is part of a broader family of machine learning methods based on artificial neural networks. Learning can be supervised, semi-supervised or unsupervised </p>
+  </div>
+  <div class="col-md-9">
+    <div class="row" >
+     <%if (roboticLength>0) {%>
+        <%robotic.forEach(p=> {%>
+        <div class ="col-md-4"><a href = "/getSingleVideo/<%= p._id%>"><video  width = "320" height="300"  src=src="/<%= p.VideoUrl%>#t=10 " ></video></a>
+                <a href="/getSingleVideo/<%= p._id%>" style="text-decoration: none; color: black;"><p><%=p.title%></p></a>
+                <p ><%=p.visitTimes%>  views | <%=moment(p.created_time).fromNow()%></p>
+        </div>
+        <%})%>
+<%}%>
+    </div>
+    <%if(isPaginationR == false){%>
+    <div> <a href="/getRobotic/1" style="color: black; float: right;">Show more</a></div>
+    <%}%>
+    <%if(isPaginationR == true){%>
+    <div class="md" border = '0'>
+    <% if (pages > 0) { %>
+                <ul class="pagination text-center" align = "center"> 
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/getRobotic/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/getRobotic/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/getRobotic/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+             <% } %>
+            </div>
+<%}%>
+  </div>
+</div>
+<!--Contact-->
+<div  ><img src="images/contact.png"  style="width:100%;"></div>
+
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
+</body>
+</html>
