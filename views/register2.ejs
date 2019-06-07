@@ -34,16 +34,116 @@
   background: #b9c9ff;
   text-align: center;
 
-}
+
 
 .user-message--error{
   border-color: red;
   background: rgb(175, 86, 86)
 }
+ body {
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  background-image: url("/images/bk.png");
+  
+
+} 
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
     </style>
 </head>
 
-<body>
+<body  >
+<div id="navbar" >
+  <ul>
+    <li style="width: 100px;"><a class="navbar-brand " href="/"><img src="images/logo3.png" width="30" height="30"   ></a></li>
+  
+    <li><a href="/login" style="color: white;">Sign in</a></li>
+    <li><a href="/register" style="color: white;">Sign up</a></li>
+      
+  </ul>
+</div>
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">

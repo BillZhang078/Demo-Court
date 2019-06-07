@@ -17,10 +17,29 @@
   <link rel="stylesheet" type="text/css" href="css/personalpage.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+  <style>
+.bg-image {
+  /* The image used */
+  background-image: url("images/h1.png");
   
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+</style>
 
 
 <body >
+
 
 <!-- <nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
    
@@ -148,7 +167,7 @@
     </a>
   </div>
   </div> -->
-<div class="p-5 container-fluid row " >
+<div class="p-5 container-fluid row bg-image" >
 
     <div class="col-md-5">
       <h3>Trending</h3>
@@ -241,7 +260,25 @@ This Self Balancing Robot is a Two-wheeled Robot that balances vertically using 
 <div class="p-5 container-fluid bg-light">
   <h2 style="margin-left: 5%">Popular videos</h2>
   
-  <div class=" grid-container ">
+  <div class=" grid-container " style="margin: 0; padding 0;  margin: auto;">
+  <div><video  width="380" height="265" src="videos/computervision.mp4" ></video>
+                <a href="playvideo.html" style="text-decoration: none; color: black;"><p>Build an HTML 5 online</p></a>
+                <p style="color: grey">20,305 views | 3 days ago</p>
+      </div>
+      <div><video align="center" width="380" height="265" src="videos/computervision.mp4" ></video>
+                <a href="playvideo.html" style="text-decoration: none; color: black;"><p>Web Development 2019: A pratical guide</p></a>
+                <p style="color: grey">210,589 views | 2 weeks ago</p>
+      </div>
+      <div><video align="center" width="380" height="265" src="videos/computervision.mp4"></video>
+                <a href="playvideo.html" style="text-decoration: none; color: black;"><p>Learn Python: Full course</p></a>
+                <p style="color: grey">1M views | 5 days ago</p>
+      </div>
+      <div><video align="center" width="380" height="265" src="videos/computervision.mp4">
+                </video>
+                <a href="playvideo.html" style="text-decoration: none; color: black;"><p>Machine learning</p></a>
+                <p style="color: grey">7,985 views | 3 days ago</p>
+      </div>
+  </div>
   <%if (rankedVideoLength>0) {%>
         <%rankedVideo.forEach(p=> {%>
       

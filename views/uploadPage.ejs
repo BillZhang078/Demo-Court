@@ -41,10 +41,131 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.js"></script>
 <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/locales/(lang).js"></script>
+<style>
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/images/bk.jpg");
+}
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+.v1{width:88%;margin:auto;}
+.col-md-4{font-size: 20px;}
+</style>
 </head>
 
-<body background="images/bg_upload.jpg">
-  <div class="p-5"></div>
+<body >
+
+ <div id="navbar" >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="images/logoc.png" width="150" height="200"   ></a></li>
+    <li><a href='/editProfile' style="color: white;">Setting</a></li>
+    <li><a href='/likePage' style="color: white;">Likes</a></li>
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+ 
+		
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       
+   
+  </ul>
+</div>
     <div class="row" >
       <div class="col-md-3"></div>  
       <div class="col-md-6 ">

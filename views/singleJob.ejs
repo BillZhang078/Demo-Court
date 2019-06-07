@@ -35,30 +35,141 @@ a.custom-card,
 a.custom-card:hover {
   color: inherit;
 } 
+body {
+  margin: 0;
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+.n{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color : #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+.v1{width:88%;margin:auto;}
+.col-md-4{font-size: 20px;}
 
 </style>
 
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark" style="margin-bottom: 20px;  ">
-    <!-- Brand/logo -->
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <a  href="/">
-        <img src="/images/logo3.png" alt="logo" style="width: 70px;"></a>
-        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-             <%if(user.type === "Sign up as employee member"){%>
-           <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-        <%}else{%>
-            <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href='/postJob'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-
-        <%}%>
-        
-        </form>
-    </ul>
-  </nav>
+<div id="navbar" >
+  <ul   class = "n">
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
+   
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+    <%if(user.type == "Sign up as employee member"){%>
+    <li><a href="/personal" style="color: white;">Personal Page</a></li>
+    <%}else{%>
+    <li><a href="/companyPage" style="color: white;">Company Page</a></li>
+    <%}%>
+    <li style="width: 500px; padding-top: 15px; padding-left: 150px;"><form class="example"  style="margin:auto;width:500px" method = "GET" action = '/jobSearchResults' >
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+      </form></li>
+      <%if(LoggedIn){%>
+         <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/personal"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/upload"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <%}else{%>
+       <li style="float: right;"><a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       <%}%>
+          <%}%>
+  </ul>
+</div>
 
 
 <div class="row">
@@ -77,7 +188,7 @@ a.custom-card:hover {
         <p style="text-align: justify;"><%=description%></p>
           <div class="requirement">
           <p style="text-align: left;"><b >Knowledge & Experience Requirements</b></p>
-          <ul>
+          <ul background-color = "white" >
             <p><%=job.requirement%></p>
            
           </ul>
@@ -100,113 +211,23 @@ a.custom-card:hover {
 
   <div class="col-md-3" > 
   <h4>More jobs</h4>
-  <!-- <%jobs.forEach(p=>{%>
+  <%jobs.forEach(p=>{%>
     <div class="row" style="padding-bottom: 15px;">
-      <a href="/job/<%=p.jobId._id%>" class="custom-card">
-        <div class="col-md-3">
+      <a href="/job/<%=p.jobId._id%>" class="custom-card row ">
+        <div class="col-md-3" style=" width:300px;">
             <div style="height:60px;">
-              <img src="/<%=p.jobId.User.avatar%>" alt="logo" style="width: 60px; float: left;" >
+              <img src="/<%=user.avatar%>" alt="logo" style=" float: left;" >
             </div>
         </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
+        <div class="col-md-9" style="border-bottom: 1px solid grey; ">
               <h5><%=p.jobId.title%></h5>
               <p style="font-size: 10px;"><%=p.jobId.location%></p>
               <p style="font-size: 10px; color: grey;"><%=moment(p.jobId.created_time).fromNow()%></p>
         </div>
       </a>
     </div>
-  <%})%> -->
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agod.Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;"/ >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="row" style="padding-bottom: 15px;">
-      <a href="main.html" class="custom-card">
-        <div class="col-md-3">
-            <div style="height:60px;">
-              <img src="/images/c2.png" alt="logo" style="width: 60px; float: left;" >
-            </div>
-        </div>
-        <div class="col-md-9" style="border-bottom: 1px solid grey;">
-              <h5>Senior Machine Learning </h5>
-              <p style="font-size: 10px;">Agoda .Melbourne, Australia</p>
-              <p style="font-size: 10px; color: grey;">3 days ago</p>
-        </div>
-      </a>
-    </div>
-
-  </div>
-
+  <%})%>
+    
 </div>
 
 

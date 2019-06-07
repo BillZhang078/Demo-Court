@@ -61,46 +61,117 @@ a.custom-card,
 a.custom-card:hover {
   color: inherit;
 }
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+  
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111111;
+}
+
 </style>
 </head>
 <body>
 
 
-<nav class="navbar navbar-expand-sm  navbar-dark row" style="margin-bottom: 0">
-   <div class ="col-md-3">
-    <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   </div>
-   <div class ="col-md-7">
-   <form  style="margin:auto;max-width:400px" method = "GET" action = '/jobSearchResults' >
-          <input type="text" placeholder="Search.." name="search" align = "center">
+<div id="navbar"  >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
+   
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+
+    <%if(user.type == "Sign up as employee member"){%>
+    <li><a href="/personal" style="color: white;">Personal Page</a></li>
+    <%}else{%>
+    <li><a href="/companyPage" style="color: white;">Company Page</a></li>
+    <%}%>
+
+    <li style=" padding-top: 15px; padding-left: 15px; width:500px;"><form class="example"  style="margin:auto;max-width:500px;" method = "GET" action = '/jobSearchResults' >
+          <input type="text" placeholder="Search.." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-   </div>
-   <div class ="col-md-2">
-   </div>
+      </form></li>
+
+      <%if(LoggedIn){%>
+         <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/personal"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/upload"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <%}else{%>
+       <li style="float: right;"><a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <listyle="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       <%}%>
+          <%}%>
+  </ul>
+</div>
 
   
        
  
    
     
-    <ul class="navbar-nav">
-        
-        <!-- <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign Out </h5></a></li> -->
-        
-        <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-      <%if(user.type == "Sign up as employee member"){%>
-           <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link" href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-        <%}else{%>
-            <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href='/postJob'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-
-        <%}%>
-        </form>
-         </div> 
-    </ul>
-  </nav>
+    
 
 
 

@@ -105,31 +105,110 @@ body, html {
   top: 0;
   width: 100%;
 }
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+  
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111111;
+}
 
 </style>
 </head>
 <body>
 
 
-  <nav class="navbar navbar-expand-sm navbar-dark row" >
-       
-        <div class="col-md-3" >   
-          	<a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px; "></a>
-        </div>
-        <div class="col-md-7" >
-          <form class="example"  style="margin:auto; max-width:400px " action="searchResults">
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-        <div class="col-md-2" >
-          <ul class="navbar-nav" >
-            
-            <a href="/personal" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='/personal' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-            <a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-          </ul>
-      </div>
-  </nav>
+  <div id="navbar"  >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
+   
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+
+    <%if(user.type == "Sign up as employee member"){%>
+    <li><a href="/personal" style="color: white;">Personal Page</a></li>
+    <%}else{%>
+    <li><a href="/companyPage" style="color: white;">Company Page</a></li>
+    <%}%>
+
+    <li style=" padding-top: 15px; padding-left: 15px; width:500px;"><form class="example"  style="margin:auto;max-width:500px;" method = "GET" action = "/searchResults" >
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+      </form></li>
+
+      <%if(LoggedIn){%>
+         <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/personal"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/upload"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <%}else{%>
+       <li style="float: right;"><a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <listyle="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       <%}%>
+          <%}%>
+  </ul>
+</div>
   <div  class =" bg-light" >
   <div class="container  ">
     <h4>Related results</h4>

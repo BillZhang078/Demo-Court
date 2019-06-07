@@ -19,7 +19,7 @@ exports.getRankPage = (req, res, next) => {
       let video = videos;
       Video.countDocuments()
         .then(count => {
-          res.render("main", {
+          res.render("main2", {
             robotic: 0,
             rankedVideo: video,
             computerVision: 0,

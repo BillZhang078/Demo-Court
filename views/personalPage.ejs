@@ -20,8 +20,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href ="/css/personalpage.css">
+	
   <style type="text/css">
   .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/banner.jpg");
@@ -103,33 +105,115 @@
 
 
 
+
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm bg-light navbar-dark" style="margin-bottom: 0">
-    <!-- Brand/logo -->
-  
-       <a  href="/"><img src="/images/logo3.png" alt="logo" style="width: 75px;" margin = "auto"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div id="navbar" >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="images/logoc.png" width="150" height="200"   ></a></li>
+		<%if(isAuthor == true){%>
+    <li><a href='/editProfile' style="color: white;">Setting</a></li>
+    <li><a href='/likePage' style="color: white;">Likes</a></li>
+		<%}%>
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
  
-    <!-- Links -->
-    
-    <ul class="navbar-nav">
-        <%if(isAuthor == true){%>
-        <li class="nav-item"><a class="nav-link text-dark" href='/editProfile'><h5>Setting |</h5></a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href='/likePage'><h5>Likes |</h5></a></li>
-        <%}%>
-        <li class="nav-item"><a class="nav-link text-dark" href="/logout"><h5>Sign Out |</h5></a></li>
-        <form class="form-inline"  action = "/logout"style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-      <%if(user.type == "Sign up as employee member"){%>
-           <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/editProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/personal"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link" href='/upload'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
+		 <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}else{%>
-            <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><a href = "/companyPage"><img src="<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href='/postJob'><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-
+           <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}%>
-        </form>
-    </ul>
+   
+  </ul>
+</div>
+
   </nav>
   <div style="padding-top: 20px; width: 100%;">
     <img src="/images/banner.jpg" style="width: 100%;" >
@@ -194,7 +278,7 @@
 
    <!--Footer-->
     
-  <div class="row footer_middle bg-light" style="border: 1px solid grey; ">
+  <!-- <div class="row footer_middle bg-light" style="border: 1px solid grey; ">
         <div class="col-md-1"></div>
         <div class="col-md-3">
           <ul class="footer_links demo center" style="list-style: none; border-left-style: none;">
@@ -218,7 +302,7 @@
           </ul>
         </div>
         <div class="col-md-1"></div>
-  </div>
+  </div> -->
 <!-- <script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
@@ -380,6 +464,17 @@ $("#pdf-next").on('click', function() {
 	if(__CURRENT_PAGE != __TOTAL_PAGES)
 		showPage(++__CURRENT_PAGE);
 });
+window.onscroll = function() {myFunction()};
 
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 </script>
 </body>

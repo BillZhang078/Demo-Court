@@ -277,6 +277,7 @@ exports.getSingleVideo = (req, res, next) => {
   const videoId = req.params.videoId;
   Video.findById(videoId)
     .then(video => {
+      //console.log(video.user.userId.avatar);
       video.visitTimes = video.visitTimes + 1;
       video
         .save()
@@ -291,8 +292,10 @@ exports.getSingleVideo = (req, res, next) => {
         user
           .populate("cart.items.productId")
           .execPopulate()
-          .then(user => {
-            const videos = user.cart.items;
+          .then(user1 => {
+            const videos = user1.cart.items;
+            console.log(user1.avatar);
+           
             // return res.render("videoPlay", {
             //   video: video,
             //   urlArray: videos
@@ -320,7 +323,7 @@ exports.getSingleVideo = (req, res, next) => {
                       video: video,
                       urlArray: videos,
                       isliked: global.isliked,
-                      user: user
+                      user: user1
                       //comments:comments
                     });
                   });
@@ -480,7 +483,7 @@ exports.getRankedVideos1 = (req, res, next) => {
                   console.log(computerVision.length);
                   console.log(deepLearning.length);
                   console.log(robotic.length);
-                  return res.render("main", {
+                  return res.render("main2", {
                     rankedVideoLength: rankedVideo.length,
                     computerVisionLength: computerVision.length,
                     deepLearningLength: deepLearning.length,
@@ -536,7 +539,7 @@ exports.getRankedVideos = (req, res, next) => {
   let robotic = new Array();
   Video.find()
     .sort({ starNumber: -1 })
-    .limit(8)
+    .limit(6)
     .then(videos1 => {
       //console.log(videos);
       rankedVideo = videos1;
@@ -544,27 +547,27 @@ exports.getRankedVideos = (req, res, next) => {
       let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
       Video.find({ title: regex })
         .sort({ starNumber: -1 })
-        .limit(8)
+        .limit(3)
         .then(videos2 => {
           deepLearning = videos2;
           regex = new RegExp(escapeRegex("vision"), "gi");
           Video.find({ title: regex })
             .sort({ starNumber: -1 })
-            .limit(8)
+            .limit(3)
             .then(videos3 => {
               computerVision = videos3;
               regex = new RegExp(escapeRegex("robot"), "gi");
               //console.log(rankedVideo);
               Video.find({ title: regex })
                 .sort({ starNumber: -1 })
-                .limit(8)
+                .limit(3)
                 .then(videos4 => {
                   robotic = videos4;
                   console.log(rankedVideo.length);
                   console.log(computerVision.length);
                   console.log(deepLearning.length);
                   console.log(robotic.length);
-                  return res.render("main", {
+                  return res.render("main2", {
                     rankedVideoLength: rankedVideo.length,
                     computerVisionLength: computerVision.length,
                     deepLearningLength: deepLearning.length,
@@ -622,7 +625,9 @@ exports.searchVideos = (req, res, next) => {
       
       res.render("searchResults", {
         videos: videos,
-        moment: moment
+        moment: moment,
+        user:req.user,
+        LoggedIn: req.session.isLoggedIn
       });
     
       // else if(videos.length == 0){
@@ -674,7 +679,7 @@ exports.searchVideos = (req, res, next) => {
 };
 exports.test = (req, res, next) => {
   console.log(req.body.title);
-  res.render("test1");
+  res.render("errorPage");
 };
 exports.getLikePage = (req, res, next) => {
   if (!req.session.isLoggedIn) {

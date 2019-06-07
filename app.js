@@ -110,6 +110,10 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+
+
+  // respond with json
+  
 // const fileFilter1 = (req, file, cb) => {
 //   if (
 //     file.mimetype === 'image/png' ||
@@ -131,6 +135,8 @@ const fileFilter = (req, file, cb) => {
 //     cb(null,file.originalname);
 //   }
 // });
+
+
 app.post('/unlikeVideos/:videoId/', (req, res, next) => {
   const action = req.body.action;
   const videoId = req.params.videoId;
@@ -261,7 +267,11 @@ app.use(registerRouter);
 app.use(videosRouter);
 app.use(CategoryRouter);
 app.use(jobRouter);
-
+app.use(function (req, res) {
+  if (!res.headersSent) {
+    res.status(404).render('errorPage')
+  }
+})
 mongoose
   .connect(mongodb_url,{ useNewUrlParser: true })
   .then(result => {

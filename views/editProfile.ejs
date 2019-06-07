@@ -84,33 +84,135 @@
 	color: #999999;
 	font-size: 13px;
 }
+body {
+  margin: 0;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 
+}
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+.v1{width:88%;margin:auto;}
+.col-md-4{font-size: 20px;}
 </style>
 </head>
 
 
 <body>
 
-<nav class="navbar navbar-expand-sm  navbar-dark" style="margin-bottom: 0">
-  <!-- Brand/logo -->
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <a class="navbar-brand " href="/"><img src="images/logo3.png" alt="logo" style="width: 70px;"></a>
+<div id="navbar" >
+  <ul>
+    <li><a class="navbar-brand " href="/"><img src="images/logoc.png" width="150" height="200"   ></a></li>
+    <li><a href='/editProfile' style="color: white;">Setting</a></li>
+    <li><a href='/likePage' style="color: white;">Likes</a></li>
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
  
-    <form class="form-inline" action="/action_page.php" style="position: absolute; right: 0;top:25px;">
-      
-      <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li><a href='editprofile.html' title='test add link'>Setting</a></li><li><a href='#' title='test add link'>Logout</a></li>" data-original-title="Shawn Mendes"><a href = '/personal'><img src="<%=avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a></a>
-
-      <a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:30px;" ></a>
-    </form>
-
-
+		
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+       
+   
   </ul>
-</nav>
+</div>
   <div class="p-5 row ">
     <div class="col-sm-3" style="background-color:bg-light;">
       <div >
-        <a class="nav-link text-dark" href="#"><img src="<%=avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
+        <a class="nav-link text-dark" href="#"><img src="/<%=avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
         <p style="text-align: center;"><b><%=user.username%></b></p>
         <p style="text-align: center;">Joined: <%=createTime%> </p>
           <div class="vertical-menu p-2 " style="background-color: bg-light;  margin: auto;">

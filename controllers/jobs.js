@@ -47,7 +47,7 @@ exports.getPostJob = (req,res,next)=>{
 }
 
 exports.getAllJobs = (req,res,next)=>{
-    const perPage = 12; //max vidoes on one page
+    const perPage = 20; //max vidoes on one page
   const page = req.params.pageNumber || 1;
     Job.find({})
     .skip(perPage * page - perPage)
@@ -60,7 +60,9 @@ exports.getAllJobs = (req,res,next)=>{
                 jobs:jobs,
                 current: page,
                 pages:Math.ceil(count/perPage),
-                user:req.user
+                user:req.user,
+                LoggedIn: req.session.isLoggedIn,
+                
             })
         })
        .catch(err=>{
@@ -93,8 +95,9 @@ exports.getSingleJob = (req,res,next)=>{
                   job:job,
                 description:description,
                   jobs:jobs,
-                  user:req.user,
-                  moment:moment
+                  user:user,
+                  moment:moment,
+                  LoggedIn: req.session.isLoggedIn,
               })
           })
       })
@@ -125,7 +128,8 @@ exports.searchJobs = (req, res, next) => {
                     jobs:jobs,
                     current: page,
                     pages:Math.ceil(count/perPage),
-                    user:req.user
+                    user:req.user,
+                    LoggedIn: req.session.isLoggedIn,
                 })
             })
            .catch(err=>{
