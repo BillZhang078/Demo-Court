@@ -1,0 +1,233 @@
+ul.demo {
+    list-style-type: none;
+  }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  .checked {
+    color: orange;
+  }
+  
+  <style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  
+  .bg-img {
+    /* The image used */
+    background-image: url("img1.jpg");
+  
+    min-height: 380px;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 75%;
+        height: 75%;
+    }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  body {
+    font-family: Arial;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #ffffff;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #f1f1f1;
+    color: grey;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #f1f1f1;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("bg.png");
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 80%;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto ;
+    grid-gap: 10px;
+    background-color: bg-light;
+    margin: auto;
+  }
+  
+  .grid-container > div {
+    background-color: bg-light
+    border: 1px solid black;
+    
+    font-size: 15px;
+  }
+  .grid-container1 {
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-gap: 10px;
+    background-color: bg-light;
+    margin: auto;
+  }
+  
+  .grid-container1 > div {
+    background-color: bg-light
+    border: 1px solid black;
+    
+    font-size: 15px;
+  }
+  
+  /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 75%;
+        height: 75%;
+    }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .bg-img {
+    /* The image used */
+    background-image: url("img1.jpg");
+  
+    min-height: 380px;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .popover{
+      max-width: 100%; /* Max Width of the popover (depending on the container!) */
+  }
+  ul.demo {
+    list-style-type: none;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  form.example input[type=text] {
+    padding: 7px;
+    font-size: 15px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #ffffff;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 7px;
+    background: #000000;
+    color: grey;
+    font-size: 15px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background:#000000;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .popover{
+      max-width: 100%; /* Max Width of the popover (depending on the container!) */
+  }
+  ul.demo {
+    list-style-type: none;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  form.example input[type=text] {
+    padding: 7px;
+    font-size: 15px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #ffffff;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 7px;
+    background: #f1f1f1;
+    color: grey;
+    font-size: 15px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #f1f1f1;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .checked {
+    color: orange;
+  }
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
