@@ -471,7 +471,7 @@ exports.postReset = (req, res, next) => {
       return res.redirect('/reset');
     }
     const token = buffer.toString('hex');
-    User.updateOne({ email: req.body.email })
+    User.findOne({ email: req.body.email })
       .then(user => {
         if (!user) {
           req.flash('error', 'No account with that email found.');
@@ -479,7 +479,8 @@ exports.postReset = (req, res, next) => {
         }
         user.resetToken = token;
         user.resetTokenExpiration = Date.now() + 3600000;
-        return user.save();
+        console.log(user)
+        user.save();
       })
       .then(result => {
         res.redirect('/');
@@ -489,7 +490,7 @@ exports.postReset = (req, res, next) => {
           subject: 'Password reset',
           html: `
             <p>You requested a password reset</p>
-            <p>Click this <a href="http://localhost:3000/resetPage/${token}">link</a> to set a new password.</p>
+            <p>Click this <a href="http://www.democourt.com/resetPage/${token}">link</a> to set a new password.</p>
           `
         });
       })
