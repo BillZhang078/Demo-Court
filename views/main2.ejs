@@ -153,10 +153,10 @@ li a:hover {
       <%if(LoggedIn){%>
          <%if(user.type == "Sign up as employee member"){%>
       <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
       <%}else{%>
        <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <li style="float: right;"><a href="/companyPage"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
        <%}%>
           <%}%>
   </ul>
@@ -189,7 +189,7 @@ li a:hover {
     <div class="col-md-4" >
     <a href = "/getSingleVideo/<%= p._id%>">
       <video  width = "400" height="300"  style="margin:auto;"src="/<%= p.VideoUrl%>#t=3 " ></video></a>
-                  <div><a href="/<%= p.VideoUrl%>#t=3 "  style="text-decoration: none; color: white"><p><%=p.title%></p></a>
+                  <div><a href="/<%= p.VideoUrl%>#t=5 "  style="text-decoration: none; color: white"><p><%=p.title%></p></a>
                   <p style="color: white;"><%=p.visitTimes%> views | <%=moment(p.created_time).fromNow()%></p></div>
     </div>
     <%})%>

@@ -144,7 +144,7 @@ li a:hover {
  
 		
       <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <li style="float: right;"><a href="/companyPage"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
        
    
   </ul>
@@ -152,7 +152,7 @@ li a:hover {
   <div class="p-5 row ">
     <div class="col-sm-3" style="background-color:bg-light;">
       <div>
-        <a class="nav-link text-dark" href="#"><img src="<%=user.avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
+        <a class="nav-link text-dark" href="#"><img src="/<%=user.avatar%>" class=" rounded-circle center" alt="Cinque Terre" width="60" height="60"></a>
         <p style="text-align: center;"><b><%=user.username%></b></p>
         <p style="text-align: center;"><%=createTime%></p>
        

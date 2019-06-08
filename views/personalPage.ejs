@@ -205,10 +205,10 @@ ul {
  
 		 <%if(user.type == "Sign up as employee member"){%>
       <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <li style="float: right;"><a href="/personal"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}else{%>
            <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <li style="float: right;"><a href="/companyPage"><img src="images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}%>
    
   </ul>
@@ -218,7 +218,7 @@ ul {
   <div style="padding-top: 20px; width: 100%;">
     <img src="/images/banner.jpg" style="width: 100%;" >
     <div>
-      <img src="<%=user.avatar%>"  class=" center rounded-circle" style=" margin-top: -100px; z-index: 0" alt="Cinque Terre" width="200" height="200" >
+      <img src="/<%=user.avatar%>"  class=" center rounded-circle" style=" margin-top: -100px; z-index: 0" alt="Cinque Terre" width="200" height="200" >
     </div>
   </div>
   <div class=" text-center">
