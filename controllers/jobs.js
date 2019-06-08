@@ -17,7 +17,7 @@ exports.getPostJob = (req,res,next)=>{
     const location = req.body.location;
     const workType = req.body.workType;
     const requirement = req.body.requirement
-    const discription = marked(req.body.description)
+    const discription = req.body.description
     const company = {
         name:req.user.username,
         avatar:req.user.avatar,
@@ -212,6 +212,7 @@ exports.searchJobs = (req, res, next) => {
         phoneNumber:req.user.phoneNumber,
         location:req.user.location,
         avatar:req.user.avatar,
+        user:req.user,
         createTime:moment(req.user.created_time).format('LL')
     });
 }

@@ -40,27 +40,135 @@ body {
     background-color: black;
     
 }
+body {
+  margin: 0;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+.nv {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+.v1{width:88%;margin:auto;}
+.col-md-4{font-size: 20px;}
 </style>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-white navbar-dark" style="margin-bottom: 0">
-    <!-- Brand/logo -->
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <a  href="/">
-        <img src="/images/logo3.png" alt="logo" style="width: 70px;"></a>
-
-
-
-
-        <form action = "/searchResults" methdo = "GET" class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "search">
-          <button class="btn btn-success float-right" type="submit"  >Search</button> 
-          <!-- <a href="signup.html" ><h5> &nbsp;&nbsp;&nbsp;&nbsp;SIGN IN &nbsp;&nbsp;&nbsp;&nbsp;</h5></a> -->
-          
-        </form>
-    </ul>
-  </nav>
+<div id="navbar" >
+  <ul class = "nv">
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
+		
+    <%if(user.type == "Sign up as employee member"){%>
+    <li><a href='/likePage' style="color: white;">Likes</a></li>
+     <%}%>
+		
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+ 
+		 <%if(user.type == "Sign up as employee member"){%>
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/personal"><img src="/<%=user1.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+        <%}else{%>
+           <li style="float: right;"><a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user1.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+        <%}%>
+   
+  </ul>
+</div>
 
  
   
@@ -95,7 +203,7 @@ body {
       </div>
       
       <div> 
-        <a href="/personal" role="button" class="btn popovers nav-link text-dark" ><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
+        <a href='/getPage/<%=user._id%>' role="button" class="btn popovers nav-link text-dark" ><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50"  >&nbsp;&nbsp;&nbsp;<b><%= video.user.username%> </b></a>
         <div class="row">
           <div class="col-md-1" >
           </div>

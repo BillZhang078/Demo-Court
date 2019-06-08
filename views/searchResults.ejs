@@ -147,7 +147,7 @@ img {
   font-size: 15px; font-family: Times New Roman;
   color: white;
 }
-ul {
+.nv {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -155,13 +155,6 @@ ul {
   background-color: #333333;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-}
 li {
   float: left;
 }
@@ -182,7 +175,7 @@ li a:hover {
 
 
   <div id="navbar"  >
-  <ul>
+  <ul class = "nv">
     <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
    
     <li><a href="/logout" style="color: white;">Sign out</a></li>
@@ -217,7 +210,7 @@ li a:hover {
     <%videos.forEach(p=>{%>
       <div class="col-md-4">
       <a href = "/getSingleVideo/<%= p._id%>">
-        <video width="290" height="165" src="/<%= p.VideoUrl%>#t=10" class = "portfolio-vid" controls data-play="hover" muted="muted"></video>
+        <video width="290" height="165" src="/<%= p.VideoUrl%>#t=10" class = "portfolio-vid"  data-play="hover" muted="muted"></video>
         </a>
       </div>
       <div class="col-md-8" >

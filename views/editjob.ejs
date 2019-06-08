@@ -29,20 +29,97 @@
   font-size: 16px;
   resize: none;
 }
+#navbar {
+  overflow: hidden;
+  background-color: black;
+  z-index: 10;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.bg-image {
+  /* The image used */
+  background-image: url("Our 2.png");
+  
+  /* Add the blur effect */
+ 
+  /* Full height */
+  height: 150%; 
+  width: auto;
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+}
+.bg-image1 {
+  /* The image used */
+  background-image: url("images/about3.png");
+ 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: white;
+  width: 100%;
+  max-height: 100%;
+}
+.cs
+{
+  font-size: 15px; font-family: Times New Roman;
+  color: white;
+}
+.nv {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+ background-color: #333333;
+}
 </style>
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark" style="margin-bottom: 20px;  ">
-    <!-- Brand/logo -->
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <a class="navbar-brand " href="/">
-        <img src="/images/logo3.png" alt="logo" style="width: 70px;"></a>
-        <form class="form-inline"  style="position: absolute; right: 0;top:25px;list-style-type: none;"> 
-        <a href="#" role="button" class="btn popovers nav-link text-dark"  data-toggle="popover" data-placement="bottom" title="" data-content="<li> <a href='/companyProfile' title='test add link'>Setting</a></li><li><a href='/logout' title='test add link'>Logout</a></li>" data-original-title="Vodafone"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="30" height="30"  ></a>
-          <a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:30px;" ></a>
-        </form>
-    </ul>
-  </nav>
+ <div id="navbar" >
+  <ul class = "nv">
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
+
+    <li><a href='/companyProfile' style="color: white;">Setting</a></li>
+    <li><a href="/logout" style="color: white;">Sign out</a></li>
+           <li style="float: right;"><a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+    
+   
+  </ul>
+</div>
  
 
   <div class="card" style="padding-left: 15px;">

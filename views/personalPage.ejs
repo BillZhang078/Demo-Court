@@ -196,7 +196,7 @@ ul {
 <body>
 <div id="navbar" >
   <ul>
-    <li><a class="navbar-brand " href="/"><img src="images/logoc.png" width="150" height="200"   ></a></li>
+    <li><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
 		<%if(isAuthor == true){%>
     <li><a href='/editProfile' style="color: white;">Setting</a></li>
     <li><a href='/likePage' style="color: white;">Likes</a></li>
@@ -204,10 +204,10 @@ ul {
     <li><a href="/logout" style="color: white;">Sign out</a></li>
  
 		 <%if(user.type == "Sign up as employee member"){%>
-      <li style="float: right;"><a class="nav-link " href="/upload"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+      <li style="float: right;"><a class="nav-link " href="/upload"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
       <li style="float: right;"><a href="/personal"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}else{%>
-           <li style="float: right;"><a class="nav-link " href="/postjob"><img src="images/upload.png" alt="logo" style="width:40px;" ></a></li>
+           <li style="float: right;"><a class="nav-link " href="/postjob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
       <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
         <%}%>
    

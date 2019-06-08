@@ -323,7 +323,8 @@ exports.getSingleVideo = (req, res, next) => {
                       video: video,
                       urlArray: videos,
                       isliked: global.isliked,
-                      user: user1
+                      user: user1,
+                      user1:req.user
                       //comments:comments
                     });
                   });
