@@ -163,7 +163,9 @@ h6 {
 .bg-blue {
   
   
-    background-image: url("/images/bk.jpg");
+    background-image: url("/images/b1.jpg");
+    
+  background-size:cover;
 }
 
 /* ==========================================================================
