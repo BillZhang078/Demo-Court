@@ -133,7 +133,7 @@ img {
 </div>
   <div class="card" style="padding-left: 15px;">
       <img src="images/d1.jpeg" alt="banner" style="height: 80px;" >
-      <a href="#"><img src="<%=user.avatar%>" alt="logo" style="width: 70px; margin-left: -850px; margin-top: -35px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" ></a>
+      <a href="#"><img src="<%=user.avatar%>" alt="logo" style="width: 70px; margin-left: -1050px; margin-top: -35px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" ></a>
       </br>
       <div class="row">
         <div class="col-md-6" style="padding-right:30px;">
@@ -202,6 +202,18 @@ function loadDoc() {
   xhttp.send();
 }
 
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");

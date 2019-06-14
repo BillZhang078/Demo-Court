@@ -214,7 +214,7 @@ exports.EditAvatar = (req, res, next) => {
       })
       .then(result => {
         console.log('UPDATED Profile!');
-        res.redirect('/editProfile');
+        res.redirect('/companyProfile');
       })
       .catch(err => console.log(err));
   };
@@ -266,8 +266,13 @@ exports.EditAvatar = (req, res, next) => {
     const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log(errors.array());
+    console.log(errors);
     return res.status(422).render('editAccount', {
-      errorMessage: errors.array()[0].msg
+      user:req.user,
+      errorMessage: errors.array()[0].msg,
+      email:req.user.email,
+     
+    createTime:moment(req.user.created_time).format('LL')
     });
   }
    let prodId = req.user._id;
@@ -286,16 +291,16 @@ exports.EditAvatar = (req, res, next) => {
               })
               .then(result => {
                 console.log('UPDATED Profile!');
-                res.redirect('/editProfile');
+                res.redirect('/editAccount');
               })
               .catch(err => console.log(err));
             }
-            req.flash('error','Invalid password');
-            res.redirect('/editAccount');
+            
           })
           .catch(err => {
             console.log(err);
           });
+          
     User.findById(prodId)
       .then(user => {
         user.email= updatedEmail;
@@ -303,7 +308,7 @@ exports.EditAvatar = (req, res, next) => {
       })
       .then(result => {
         console.log('UPDATED Profile!');
-        res.redirect('/editProfile');
+        res.redirect('/editAccount');
       })
       .catch(err => console.log(err));
   };

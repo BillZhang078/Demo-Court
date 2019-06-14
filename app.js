@@ -275,7 +275,7 @@ app.use(function (req, res) {
 mongoose
   .connect(mongodb_url,{ useNewUrlParser: true })
   .then(result => {
-    app.listen(process.env.PORT ||3000);
+    app.listen(process.env.PORT ||8000);
     console.log('Server is working');
   })
   .catch(err => {

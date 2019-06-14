@@ -231,7 +231,7 @@ ul {
   
     <%}%>
 		<%if(resume!==''){%>
-    <button id="load-button">My Resume</button>
+    <button style="background-color: #0157A0; color: white;" class="btn2" id="load-button">My Resume</button>
 		<%}%>
 <embed id = "resume" src= '/<%=resume%>' type="application/pdf" width="50%" height="900px" hidden />
 <div id="pdf-main-container">
@@ -263,7 +263,7 @@ ul {
   <%if(isAuthor == true){%>
   <form action="/delete-video" method="POST">
  <input type="hidden" value="<%= p.productId._id%>" name="productId">
-   <button class="btn2" type="submit">Delete</button>
+   <button style="background-color: #0157A0; color: white;" class="btn2" type="submit">Delete</button>
   </form>
 <%}%>
       </div>

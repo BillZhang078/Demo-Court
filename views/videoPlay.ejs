@@ -18,7 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -188,13 +188,13 @@ li a:hover {
                        <%if(isliked == false){%>
 	                  <div><%= video.visitTimes%> views &nbsp;<a id = "like"><span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes</a>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "likeVideos">Like</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div> 
+                      <button style="background-color: #0157A0; color: white;" class="btn2" onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "likeVideos">Like</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div> 
                       
                        <%}%>
                        <%if(isliked == true){%>
                     <div ><%= video.visitTimes%> views &nbsp;<span id="likes-count-<%=video._id%>"><%=video.starNumber%></span>&nbsp;likes
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button  onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "unlikeVideos">unlike</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div>
+                    <button  style="background-color: #0157A0; color: white;" class="btn2" onclick="actOnPost(event);" data-post-id="<%=video._id%>" id="like-unlike" value = "unlikeVideos">unlike</button>&nbsp;<a href="#" data-toggle="modal" data-target="#myModal" id = "share"> <img src="/images/share1.png" alt="Submit" width="30"></a></div>
                     
                      <%}%>
                      
@@ -231,7 +231,7 @@ li a:hover {
                  <div class="comments-list" id="comments-list">
                         <script id="comment-template" type="text/x-template">
                             <div class="user-icon">
-                                <img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="50" height="50">
+                                <img src="/<%=user1.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50">
                             </div>
                             <div class="comment-info">
                                 <div class="row">
@@ -300,6 +300,18 @@ li a:hover {
   </div>
   
 <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 const value = "https://twitter.com/intent/tweet?text=";
 const currentUrl = value+ window.location.href
 console.log(value);  

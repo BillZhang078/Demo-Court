@@ -129,7 +129,7 @@ li a:hover {
 
 <div id="navbar" >
   <ul>
-    <li style="width: 100px;"><a class="navbar-brand " href="/"><img src="/images/logo3.png" width="30" height="30"   ></a></li>
+    <li style="width: 100px;"><a class="navbar-brand " href="/"><img src="/images/logoc.png" width="150" height="200"   ></a></li>
   
     <li><a href="/login" style="color: white;">Sign in</a></li>
     <li><a href="/register" style="color: white;">Sign up</a></li>
@@ -138,13 +138,13 @@ li a:hover {
       
   </ul>
 </div>
-<div class="login-form">
-    <form action="/login" method="post">
-        <h2 class="text-center">Sign in</h2>   
+<div class="login-form" style="width:30%; padding-top:200px;font-size:20px;" >
+    <form action="/login" method="post" style="height: 400px;">
+        <h2 class="text-center"><b>Sign in</b></h2>   
         <div class="form-group">
-          <div class="input-group">
+          <div class="input-group" style="font-size:20px;">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" name="email" placeholder="Username" required="required">       
+                <input style="height:60px;" type="text" class="form-control" name="email" placeholder="Username" required="required">       
             </div>
         </div>
      <% if(errorMessage){%>
@@ -153,13 +153,13 @@ li a:hover {
     <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" name="password" placeholder="Password" required="required">       
+                <input style="height:60px;" type="password" class="form-control" name="password" placeholder="Password" required="required">       
             </div>
         </div>        
         <div class="form-group">
             <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
         </div>
-        <div class="clearfix">
+        <div class="clearfix" >
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me &nbsp; </label>
             <a href="forgetpass.html" data-toggle="modal" data-target="#myModal">Forgot Password?</a>
         </div>
@@ -171,7 +171,7 @@ li a:hover {
       <a href="#" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
         </div> -->
     </form>
-    <p class="text-center text-muted small">Don't have an account? <a href="/register">Sign up here!</a></p>
+    <p class="text-center text-muted small" style="font-size:20px;">Don't have an account? <a href="/register">Sign up here!</a></p>
     <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">

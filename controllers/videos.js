@@ -356,6 +356,7 @@ exports.increaseStarNumbers = (req, res, next) => {
       //console.log(newNumber);
       video.starNumber = video.starNumber + 1;
       video.user.userId.like++;
+      console.log(video.user.userId.username)
       if (video.starNumber > 4) {
         const newVideo = new RankedVideo();
         newVideo._id = video._id;

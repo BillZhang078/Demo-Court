@@ -16,6 +16,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/personalpage.css">
   <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+   <link rel="stylesheet" type="text/css" href="css/personalpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
  
 </head>
 
@@ -29,7 +32,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
- 
+  font-size: 28px;
   
     background-color: #333333;
     
@@ -46,6 +49,7 @@ body {
   padding: 16px;
   text-align: center;
   background-color: #ffffff;
+  font-size: 28px;
 }
 
 a.custom-card,
@@ -151,7 +155,7 @@ li a:hover {
       <li style="float: right;"><a href="/upload"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
       <%}else{%>
        <li style="float: right;"><a class="nav-link " href="/postJob"><img src="/images/upload.png" alt="logo" style="width:40px;" ></a></li>
-      <listyle="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
+      <li style="float: right;"><a href="/companyPage"><img src="/<%=user.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="40" height="40"  ></a></li>
        <%}%>
           <%}%>
   </ul>
@@ -161,10 +165,11 @@ li a:hover {
   
 
 
-<div class="row" style="padding-top: 20px; width: 100%; padding-bottom: 20px; ">
+<div class="row"  style="padding-top: 20px; width: 100%; padding-bottom: 20px;font-size: 28px; ">
+
 <%if(jobs.length > 0){%>
 <%jobs.forEach(p=>{%>
-<div class="col-md-3" style="padding-bottom: 20px;">
+<div class="col-md-4" style="padding-bottom: 20px;padding-left: 50px;">
 <a href="/job/<%=p._id%>" class="custom-card">
 
     <div class="card" style="height: 200px;">
@@ -182,7 +187,8 @@ li a:hover {
 <%})%>
 <%}%>
 
-</div><div class="md" border = '0'align = "center">
+</div>
+<div class="md" border = '0'align = "center">
     <% if (pages > 0) { %>
                 <ul class="pagination text-center" align = "center"> 
                     <% if (current == 1) { %>
@@ -215,6 +221,9 @@ li a:hover {
             </div>
     
   </div>
-<div class=" col-md-9 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
+<div class=" col-md-8 "><p style="float: left; color: grey;font-size: 10px;">@ DemoCourt 2019 </p></div>
+<script>
+
+</script>
 </body>
 </html>

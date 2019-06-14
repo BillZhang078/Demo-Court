@@ -233,7 +233,20 @@ li a:hover {
 
     <!-- Main JS-->
     <script src="/js/global.js"></script>
+<script>
+window.onscroll = function() {myFunction()};
 
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>

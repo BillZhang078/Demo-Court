@@ -187,7 +187,7 @@ li a:hover {
    
           <p class="p-2"></p>
           <label for="comment">Email address</label>
-          <p style="color: grey ">Use this to log in to your account and to receive email notifications and updates from us.</p>
+          <p style="color: grey ">Change your email here</p>
           <p><%=email%><a href="#" data-toggle="modal" data-target="#myModal"> &nbsp; Edit</a></p>
           <% if(errorMessage){%>
             <div class="user-message use-message--error"><%=errorMessage%></div>
@@ -228,6 +228,18 @@ li a:hover {
 </div>
 
 <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
 });

@@ -147,6 +147,7 @@ li a:hover {
 }
 .v1{width:88%;margin:auto;}
 .col-md-4{font-size: 20px;}
+
 </style>
 </head>
 
@@ -172,7 +173,6 @@ li a:hover {
         <div class="p-3 container-fluid bg-light">
           <h3 class="text-lg-center" > Upload your work</h3>
           <p class="text-lg-center">Upload your video here by clicking on the button</p>
-          
         </div>
 
       <div class=" p-3 container-fluid bg-light">
@@ -192,7 +192,7 @@ li a:hover {
          -->
       <form action="/upload" method="post"   enctype="multipart/form-data">
       
-          <input type="file" name='video' id="video" class="file" name = 'video' style="margin: auto;">
+          <input style="margin: auto;"type="file" name='video' id="video" class="file" name = 'video'  >
           <!-- <div class="p-2 form-group">
             <label class="comment">Project Title:</label>
             <textarea class="form-control" rows="2" id="comment" name="title"></textarea>
@@ -258,6 +258,18 @@ function loadDoc() {
   };
   xhttp.open("GET", "ajax_info.txt", true);
   xhttp.send();
+}
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
 }
 </script>
 </body>

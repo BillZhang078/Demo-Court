@@ -8,7 +8,7 @@ function escapeRegex(text) {
 }
 exports.getRankPage = (req, res, next) => {
   //console.log("page1");
-  const perPage = 4; //max vidoes on one page
+  const perPage = 6; //max vidoes on one page
   const page = req.params.pageNumber || 1;
   console.log(page);
   Video.find({})
@@ -58,7 +58,7 @@ exports.getRankPage = (req, res, next) => {
 
 exports.getDeepLearningPage = (req, res, next) => {
   //console.log("page1");
-  const perPage = 4; //max vidoes on one page
+  const perPage = 6; //max vidoes on one page
   regex = new RegExp(escapeRegex("deep", "learning"), "gi");
   const page = req.params.pageNumber || 1;
   console.log(page);
@@ -71,7 +71,7 @@ exports.getDeepLearningPage = (req, res, next) => {
         .countDocuments()
         .then(count => {
           console.log(count);
-          res.render("main", {
+          res.render("main2", {
             rankedVideo: 0,
             computerVision: 0,
             deepLearning: video,
@@ -106,7 +106,7 @@ exports.getDeepLearningPage = (req, res, next) => {
 
 exports.getRoboticPage = (req, res, next) => {
   //console.log("page1");
-  const perPage = 4; //max vidoes on one page
+  const perPage = 6; //max vidoes on one page
   regex = new RegExp(escapeRegex("robot"), "gi");
   const page = req.params.pageNumber || 1;
   console.log(page);
@@ -119,7 +119,7 @@ exports.getRoboticPage = (req, res, next) => {
       Video.find({ title: regex })
         .countDocuments()
         .then(count => {
-          res.render("main", {
+          res.render("main2", {
             robotic: video,
             rankedVideo: 0,
             computerVision: 0,
@@ -155,7 +155,7 @@ exports.getRoboticPage = (req, res, next) => {
 
 exports.getComputerVisionPage = (req, res, next) => {
   //console.log("page1");
-  const perPage = 4; //max vidoes on one page
+  const perPage = 6; //max vidoes on one page
   regex = new RegExp(escapeRegex("vision"), "gi");
   const page = req.params.pageNumber || 1;
 
@@ -168,7 +168,7 @@ exports.getComputerVisionPage = (req, res, next) => {
       Video.find({ title: regex })
         .countDocuments()
         .then(count => {
-          res.render("main", {
+          res.render("main2", {
             rankedVideo: {},
             computerVision: video,
             deepLearning: {},

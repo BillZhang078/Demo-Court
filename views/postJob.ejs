@@ -26,7 +26,7 @@
   width: 50%;
 }
 body {
-    background-image: url("/images/bk.jpg");
+    <!-- background-image: url("/images/bk.jpg"); -->
     background-color: #cccccc;
     }
 body {
@@ -154,20 +154,20 @@ li a:hover {
 </div>
 
 
-<div class="login-form">
+<div class="login-form" style = " padding-top:50px;">
     <form action='/postjob' method="POST">
-        <h1 class="text-center" >Posting jobs</h3>
+        <h1 class="text-center" ><b>Posting jobs</b></h3>
           <form action='/postJob' method = "POST" enctype="multipart/form-data">               
               <input type="company" style="width: 98%; margin-bottom: 10px;"  id="cname" name="name" placeholder="Company name"> 
               <input type="jobtitle"  style="width: 98%; margin-bottom: 10px;"  id="jobtitle" name="jobtitle" placeholder="Job Title"> 
               <input type="location" style="width: 98%; margin-bottom: 10px;" id="location" name="location" placeholder="Location"> 
-              <label color ="white" >Job function</label>
+              <label color ="white"  >Job function</label>
               <select id="option" name="category" style="width: 98%; margin-bottom: 10px;">
                 <option value="employer">Computer Vision</option>
                 <option value="employer">Deep Learning</option>
                 <option value="student">Robotics</option>       
               </select> 
-              <label>Employment type</label>
+              <label  >Employment type</label>
               <select id="option" name="workType" style="width: 98%; margin-bottom: 10px;">
                 <option value="employer">Full-time</option>
                 <option value="employer">Part-time</option>
@@ -176,9 +176,9 @@ li a:hover {
                 <option value="employer">Volunteer</option>
                 <option value="student">Intership</option>       
               </select> 
-              <label>Job description</label>
+              <label  >Job description</label>
               <textarea class="form-control" style="margin-bottom: 10px;" rows="5" id="description" name="description"></textarea>
-              <label>Job requirement</label>
+              <label >Job requirement</label>
               <textarea class="form-control" style="margin-bottom: 10px;" rows="5" id="description" name="requirement"></textarea>
               <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;" onclick="myFunction()">Post</button>
           </form>  
@@ -189,5 +189,17 @@ li a:hover {
 <script>
 function myFunction() {
   alert("Success!");
+}
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
 }
 </script>

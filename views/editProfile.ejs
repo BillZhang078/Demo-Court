@@ -236,7 +236,7 @@ li a:hover {
               </div>
               <div class="col-sm-3" >
                 <form action="/updatedAvatar" method = "POST" enctype="multipart/form-data">
-                <input type="file" style="margin-bottom: 5px;" id="avatar" name = 'video' style="margin: auto;" value = "Change My Avatar"> 
+                <input  type="file" style="margin-bottom: 5px;" id="avatar" name = 'video' style="margin: auto;" value = "Change My Avatar"> 
                 <input type="submit"  value = "Change My Avatar">
                 </form>
                </div>
@@ -277,7 +277,7 @@ li a:hover {
  <label for="comment" >Resume</label>
  
  <p style="color: grey ">Upload your resume here</p>
-    <button id="upload-button">Select Resume</button> 
+    <button id="upload-button" style="background-color: #0157A0; color: white;">Select Resume</button> 
     <form action="/EditResume" method="POST" enctype="multipart/form-data">
 <input type="file" id="file-to-upload" name = 'video' accept="application/pdf" />
 <p class="p-2"></p>
@@ -309,6 +309,7 @@ li a:hover {
 </div>
 </form>
 <script>
+
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({html:true});   
 });

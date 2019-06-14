@@ -128,13 +128,13 @@ img {
       </br>
       <div class="row">
         <div class="col-md-6" style="padding-right:30px;">
-          <h4 style=" text-align: left;">Vodafone</h4>
-          <p style=" text-align: left;"><b></b> Sydney, Australia</p>
+          <h4 style=" text-align: left;"><%=user.username%></h4>
+          <p style=" text-align: left;"><b></b> <%=user.location%></p>
         </div>
         <div class="col-md-6" style="text-align: left;">
         </br>
-          <p><b>Website: </b> &nbsp; https://www.vodafone.com.au/</p>
-          <p><b>Email: </b>support@vodafone.com</b></p>
+          <p><b>Website: </b> &nbsp; <%=user.website%></p>
+          <p><b>Email: </b><%=user.email%></b></p>
         </div>
       </div>  
   </div>
@@ -168,7 +168,7 @@ img {
     <div class="col-md-10" style="padding-bottom: 20px;">
       <form action = "/editDescription/<%=job._id%>" method = "POST">
         <textarea name = "content"><%=job.description%></textarea>
-        <button style="float: right; " onclick="myFunction()" type = "submit">Change</button>
+        <button style="background-color: #0157A0; color: white;" class="btn2" style="float: right; " onclick="myFunction()" type = "submit">Change</button>
       </form>
   
     </div>
@@ -177,7 +177,7 @@ img {
     <div class="col-md-10" style="padding-bottom: 50px;">
      <form action = "/editRequirement/<%=job._id%>" method = "POST">
         <textarea name = "content"><%=job.requirement%></textarea>
-        <button style="float: right;" onclick="myFunction()" type = "submit">Change</button>
+        <button style="background-color: #0157A0; color: white;" class="btn2" style="float: right;" onclick="myFunction()" type = "submit">Change</button>
       </form>
       
     </div>
@@ -207,6 +207,18 @@ img {
  <div style="height: 20px; "></div>
 
 <script>
+<!-- window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+} -->
 const value = document.getElementById("position").name;
 console.log(value);  
 function modifyText(text) {
