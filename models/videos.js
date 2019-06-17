@@ -42,6 +42,13 @@ const videoSchema = new Schema({
         default:"/images/defaultposter.jpeg"
 
     },
+    username:{
+        type:String,
+
+    },
+    userDescription:{
+        type:String,
+    },
     created_time: {
         type: Date,
         
