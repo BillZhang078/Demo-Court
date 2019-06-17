@@ -541,7 +541,7 @@ exports.getRankedVideos = (req, res, next) => {
   let robotic = new Array();
   Video.find()
     .sort({ starNumber: -1 })
-    .limit(6)
+    .limit(9)
     .then(videos1 => {
       //console.log(videos);
       rankedVideo = videos1;
@@ -549,20 +549,20 @@ exports.getRankedVideos = (req, res, next) => {
       let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
       Video.find({ title: regex })
         .sort({ starNumber: -1 })
-        .limit(3)
+        .limit(6)
         .then(videos2 => {
           deepLearning = videos2;
           regex = new RegExp(escapeRegex("vision"), "gi");
           Video.find({ title: regex })
             .sort({ starNumber: -1 })
-            .limit(3)
+            .limit(6)
             .then(videos3 => {
               computerVision = videos3;
               regex = new RegExp(escapeRegex("robot"), "gi");
               //console.log(rankedVideo);
               Video.find({ title: regex })
                 .sort({ starNumber: -1 })
-                .limit(3)
+                .limit(6)
                 .then(videos4 => {
                   robotic = videos4;
                   console.log(rankedVideo.length);
