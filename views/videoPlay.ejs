@@ -219,6 +219,7 @@ li a:hover {
                             <div class="row">
                                 <textarea placeholder="Sharing your ideas with people who is wacthing this video" required id="new_comment_text" rows="20" cols = "50" name = "comment"></textarea>
                                 <input id= "postId" value = "<%=video._id%>" hidden>
+                                <input name= "avatar" value = "<%=user.avatar%>" hidden>
                             </div>
                         </div>
                         <div class="right-side">
@@ -232,7 +233,7 @@ li a:hover {
                  <div class="comments-list" id="comments-list">
                         <script id="comment-template" type="text/x-template">
                             <div class="user-icon">
-                                <img src="/<%=user1.avatar%>" class=" rounded-circle" alt="Cinque Terre" width="50" height="50">
+                                <img src="/images/visitor2.jpeg" class=" rounded-circle" alt="Cinque Terre" width="50" height="50">
                             </div>
                             <div class="comment-info">
                                 <div class="row">
