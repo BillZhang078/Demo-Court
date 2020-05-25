@@ -222,7 +222,7 @@ exports.uploadVideo = (req, res, next) => {
     VideoUrl: url,
     user: user,
     userDescription: req.user.description,
-    username:req.user.name
+    username:req.user.username
   });
   video
     .save()
@@ -274,6 +274,9 @@ exports.deleteVideos = (req, res, next) => {
 };
 
 exports.getSingleVideo = (req, res, next) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
   const videoId = req.params.videoId;
   Video.findById(videoId)
     .then(video => {
@@ -547,20 +550,20 @@ exports.getRankedVideos = (req, res, next) => {
       rankedVideo = videos1;
       //console.log(rankedVideo);
       let regex = new RegExp(escapeRegex("deep", "learning"), "gi");
-      Video.find({ title: regex })
+      Video.find( { $or: [ { title: regex }, { description:regex} ] } )
         .sort({ starNumber: -1 })
         .limit(6)
         .then(videos2 => {
           deepLearning = videos2;
           regex = new RegExp(escapeRegex("vision"), "gi");
-          Video.find({ title: regex })
+          Video.find( { $or: [ { title: regex }, { description:regex} ] } )
             .sort({ starNumber: -1 })
             .limit(6)
             .then(videos3 => {
               computerVision = videos3;
               regex = new RegExp(escapeRegex("robot"), "gi");
               //console.log(rankedVideo);
-              Video.find({ title: regex })
+              Video.find( { $or: [ { title: regex }, { description:regex} ] } )
                 .sort({ starNumber: -1 })
                 .limit(6)
                 .then(videos4 => {

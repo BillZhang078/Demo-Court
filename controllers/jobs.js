@@ -39,7 +39,7 @@ exports.getPostJob = (req,res,next)=>{
     newJob.save()
     .then(result=>{
         req.user.addToJob(newJob);
-        res.redirect('/getJobs/1');
+        res.redirect('/Companypage');
     })
     .catch(err=>{
         console.log(err);

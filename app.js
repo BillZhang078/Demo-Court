@@ -238,8 +238,10 @@ app.post('/likeVideos/:videoId/', (req, res, next) => {
 app.post('/comment/:videoId', function(req, res){
   
   const newComment = {
-    comment: req.body.comment
+    comment: req.body.comment,
+  
   }
+
   const comment = new Comment({
     content:req.body.comment,
     postId :req.params.videoId,
@@ -267,17 +269,18 @@ app.use(registerRouter);
 app.use(videosRouter);
 app.use(CategoryRouter);
 app.use(jobRouter);
-app.use(function (req, res) {
-  if (!res.headersSent) {
-    res.status(404).render('errorPage')
-  }
-})
+
 mongoose
   .connect(mongodb_url,{ useNewUrlParser: true })
   .then(result => {
-    app.listen(process.env.PORT ||8000);
+    app.listen(process.env.PORT ||3000);
     console.log('Server is working');
   })
   .catch(err => {
     console.log(err);
   });
+  app.use(function (req, res) {
+    if (!res.headersSent) {
+      res.status(404).render('errorPage')
+    }
+  })

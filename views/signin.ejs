@@ -28,7 +28,6 @@
 }
 body {
  background-image: url("/images/b1.jpg") ;
- background-color: #cccccc;
  background-repeat: no-repeat;
  background-size:cover;
 }
@@ -80,7 +79,8 @@ img {
 }
 .bg-image {
   /* The image used */
-  background-image: url("Our 2.png");
+  background-image: url("Our 2.png") linear-gradient(to right, #7ed56f, #28b485);
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
   
   /* Add the blur effect */
  
@@ -140,7 +140,7 @@ li a:hover {
       
   </ul>
 </div>
-<div class="login-form" style="width:30%; padding-top:200px;font-size:20px;" >
+<div class="login-form" style="padding-top:200px;font-size:20px;" >
     <form action="/login" method="post" style="height: 400px;">
         <h2 class="text-center"><b>Sign in</b></h2>   
         <div class="form-group">
@@ -173,7 +173,7 @@ li a:hover {
       <a href="#" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
         </div> -->
     </form>
-    <p class="text-center text-muted small" style="font-size:20px;">Don't have an account? <a href="/register">Sign up here!</a></p>
+    <p class="text-center text-muted small" style="font-size:30px;">Don't have an account? <a href="/register" style="color:white">Sign up here!</a></p>
     <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
